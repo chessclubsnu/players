@@ -17,6 +17,7 @@ export default function HallOfFame() {
           background: #0b1320;
           color: white;
           margin: 0;
+          overflow-x: hidden;
         }
 
         .title {

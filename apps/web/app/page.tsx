@@ -20,6 +20,7 @@ export default function HallOfFame() {
         }
 
         .title {
+          width: 100%;
           text-align: center;
           font-size: 40px;
           letter-spacing: 4px;
@@ -32,8 +33,8 @@ export default function HallOfFame() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 600px;
-          height: 600px;
+          width: 500px;
+          height: 500px;
           background-image: url("/image/logo.png");
           background-size: contain;
           background-repeat: no-repeat;
@@ -44,6 +45,10 @@ export default function HallOfFame() {
         }
 
         .container {
+          width: 1024px;
+          max-width: 1024px;
+          margin: 0 auto;
+          
           position: relative;
           display: flex;
           justify-content: center;
@@ -51,9 +56,6 @@ export default function HallOfFame() {
           gap: 60px;
           padding: 40px;
           z-index: 1;
-
-          max-width: 1024px;
-          margin: 0 auto;
         }
 
         .player {

@@ -6,6 +6,11 @@ export default function HallOfFame() {
   return (
     <>
       {/* 스타일 설정 */}
+      <link 
+        href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&display=swap" 
+        rel="stylesheet" 
+      />
+      
       <style jsx global>{`
         body {
           font-family: 'Chiron Sung HK', Arial, sans-serif;

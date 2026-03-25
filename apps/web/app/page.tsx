@@ -51,6 +51,8 @@ export default function HallOfFame() {
           gap: 60px;
           padding: 40px;
           z-index: 1;
+
+          max-width: 1200px;
         }
 
         .player {

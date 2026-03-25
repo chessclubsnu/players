@@ -8,9 +8,9 @@
 
 html,
 body {
-  max-width: 100vw;
+  /* max-width: 100vw; */
   overflow-x: hidden;
-  /* Next.js 기본 배경 설정을 제거하여 page.tsx의 스타일이 먹히게 합니다 */
+  width: 100%;
   background: transparent; 
 }
 

@@ -96,6 +96,38 @@ export default function HallOfFame() {
           line-height: 1.6;
           white-space: pre;
         }
+
+        /* ⭐ 모바일 대응 (화면 너비 768px 이하일 때) */
+        @media (max-width: 768px) {
+          .container {
+            gap: 15px; /* 모바일에서는 간격을 좁게 */
+            padding: 15px;
+          }
+
+          .title {
+            font-size: 24px; /* 제목 크기 축소 */
+            margin: 30px 0;
+          }
+
+          .player {
+            /* ⭐ 핵심: 화면 너비에서 간격을 뺀 값의 절반(2열 배치) */
+            width: calc(50% - 10px); 
+            height: auto; /* 높이는 콘텐츠에 맞게 자동 조절 (혹은 고정값 320px 정도) */
+            min-height: 300px;
+          }
+
+          .photocard {
+            height: 160px; /* 사진 영역 높이 축소 */
+          }
+
+          .name {
+            font-size: 16px; /* 이름 크기 축소 */
+          }
+
+          .info {
+            font-size: 11px; /* 설명 글씨 축소 */
+            line-height: 1.4;
+          }
       `}</style>
 
       {/* 화면 구조 */}

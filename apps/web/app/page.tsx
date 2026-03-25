@@ -52,7 +52,8 @@ export default function HallOfFame() {
           padding: 40px;
           z-index: 1;
 
-          max-width: 1200px;
+          max-width: 1024px;
+          margin: 0 auto;
         }
 
         .player {

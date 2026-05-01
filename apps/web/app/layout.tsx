@@ -15,7 +15,7 @@ const geistMono = localFont({
 const noto = Noto_Sans_KR ({
   subsets: ["latin"],
   weight: ['400'],
-  variable: "--font-chiron"
+  variable: "--font-noto"
 })
 
 export const metadata: Metadata = {
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  width: 1024,
-  initialScale: 0.4,
+  width: "device-width",
+  initialScale: 1,
   minimumScale: 0.4,
   maximumScale: 4.0,
   userScalable: true,

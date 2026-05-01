@@ -20,6 +20,18 @@ const winners: Player[] = [
     title: "2027.3.28 아레나 나잇 우승자\nArena Night Winner",
     image: "/image/magnus.png",
   },
+  {
+    id: 3,
+    name: "매그너스",
+    title: "2027.3.28 아레나 나잇 우승자\nArena Night Winner",
+    image: "/image/magnus.png",
+  },
+  {
+    id: 4,
+    name: "매그너스",
+    title: "2027.3.28 아레나 나잇 우승자\nArena Night Winner",
+    image: "/image/magnus.png",
+  },
 ]
 
 export default function Page() {

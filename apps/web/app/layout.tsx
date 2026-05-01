@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link"
 import localFont from "next/font/local";
+import { Noto_Sans_KR } from "next/font/google"
 import "./globals.css";
 
 const geistSans = localFont({
@@ -10,6 +12,11 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
 });
+const noto = Noto_Sans_KR ({
+  subsets: ["latin"],
+  weight: ['400'],
+  variable: "--font-chiron"
+})
 
 export const metadata: Metadata = {
   title: "명예의 전당",
@@ -31,7 +38,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${noto.variable}`}>
+        <nav style={{ padding: "16px", borderBottom: "1px solid #ddd" }}>
+          <Link href="/" style={{ marginRight: 16 }}>Home</Link>
+          <Link href="/hall-of-fame" style={{ marginRight: 16 }}>
+            Hall of Fame
+          </Link>
+          <Link href="/ratings">Ratings</Link>
+        </nav>
+
         {children}
       </body>
     </html>

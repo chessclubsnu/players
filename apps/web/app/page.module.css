@@ -16,6 +16,12 @@
   font-synthesis: none;
 }
 
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
   .page {
     --gray-rgb: 255, 255, 255;
@@ -28,10 +34,47 @@
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+
   gap: 32px;
   grid-row-start: 2;
+}
+
+.title {
+    font-family: var(--font-noto);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.description {
+    margin-top: 12px;
+    color: #666;
+}
+
+.grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.card {
+  display: block;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s;
+}
+
+.card:hover {
+  border-color: black;
+  transform: translateY(-4px);
 }
 
 .main ol {

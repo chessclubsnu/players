@@ -1,0 +1,78 @@
+.main {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.title span {
+  font-size: 1.2rem;
+  color: #666;
+  margin-left: 8px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+  background: url("/image/logo.png") center/contain no-repeat;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.player:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.photocard {
+  width: 200px;
+  height: 260px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+
+  transition: transform 0.3s ease;
+}
+
+.description {
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.info {
+  margin-top: 6px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* 데스크탑 대응 */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+  }
+}

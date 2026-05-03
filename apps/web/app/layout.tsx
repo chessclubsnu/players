@@ -39,11 +39,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable} ${noto.variable}`}>
-        <nav style={{ padding: "16px", borderBottom: "1px solid #ddd" }}>
+        <nav style={{ padding: "16px", borderBottom: "1px solid #ddd"}}>
           <Link href="/" style={{ marginRight: 16 }}>Home</Link>
-          <Link href="/hall-of-fame" style={{ marginRight: 16 }}>
-            Hall of Fame
-          </Link>
+          <Link href="/hall-of-fame" style={{ marginRight: 16 }}>Hall of Fame</Link>
           <Link href="/ratings">Ratings</Link>
         </nav>
 

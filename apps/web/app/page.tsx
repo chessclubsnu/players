@@ -4,9 +4,9 @@ import styles from "./page.module.css"
 export default function Page() {
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>My Web App</h1>
+      <h1 className={styles.title}>ChessClub</h1>
       <p className={styles.description}>
-        원하는 페이지로 이동하세요
+        서울대&nbsp;&nbsp;중앙동아리&nbsp;&nbsp;체스클럽
       </p>
 
       <div className={styles.grid}>

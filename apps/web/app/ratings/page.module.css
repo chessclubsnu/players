@@ -1,0 +1,17 @@
+.main {
+  position: relative;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.title span {
+  font-size: 1rem;
+  color: #666;
+  margin-left: 8px;
+}

@@ -4,23 +4,28 @@ import path from 'path'
 import styles from "./page.module.css"
 
 export default async function Page() {
-// public 폴더 내의 경로를 잡아줍니다.
-  const playerDbFilePath = path.join(process.cwd(), 'public', 'json', 'PUBLIC_players_database.json');
-  const playerDbfileContent = await fs.readFile(playerDbFilePath, 'utf8');
-// 여기서는 문자열을 읽어온 것이므로 JSON.parse를 써야 합니다.
-  const playerDbData = JSON.parse(playerDbfileContent);
-
-  const playerHistFilePath = path.join(process.cwd(), 'public', 'json', 'PUBLIC_players_rating_history.json');
-  const playerHistFileContent = await fs.readFile(playerHistFilePath, 'utf8')
-  const playerHistData = JSON.parse(playerHistFileContent);
+  async function loadJsonFile(fileName: string) {
+    const filePath = path.join(process.cwd(), 'public', 'json', fileName + '.json');
+    const fileContent = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(fileContent)
+  }
   
+  const periodFile = await loadJsonFile("period")
+  const currentPeriod: string = periodFile[0].current_period
+  const lastPeriod: string = periodFile[0].last_period
 
+  const currentRanking = await loadJsonFile("PUBLIC__ranking_" + currentPeriod);
+  const lastRanking = await loadJsonFile("PUBLIC__ranking_" + lastPeriod)
+
+  const playersProgress = await loadJsonFile("PUBLIC__players_progress_by_period")
+  
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>
         Leaderboard <span>1st Half, May 2026</span>
         {/* 읽어온 데이터를 Props로 전달 */}
-        <Leaderboard playerDB={playerDbData} ratingHistList={playerHistData} />
+        <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 
+        currentRanking={currentRanking} lastRanking={lastRanking} playersProgress={playersProgress} />
       </h1>
     </main>
   );

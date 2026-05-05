@@ -5,7 +5,8 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: clamp(0.5rem, 7vw, 2rem);
+  letter-spacing: clamp(0.01em, 0.5vw, 0.04em);
   text-align: center;
   font-weight: bold;
 }
@@ -14,4 +15,81 @@
   font-size: 1rem;
   color: #666;
   margin-left: 8px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 하나의 블록 (row + detail) */
+.block {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 기본 row */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 20px;
+  cursor: pointer;
+
+  /* glass 느낌 */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 0px solid rgba(255, 255, 255, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+.row:hover {
+  transform: scale(1.02);
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* 텍스트 */
+.rank {
+  font-weight: bold;
+}
+
+.name {
+  flex: 1;
+  text-align: left;
+  margin-left: 16px;
+}
+
+.rating {
+  font-weight: bold;
+}
+
+/* 확장 영역 */
+.detail {
+  max-height: 0;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  transition: max-height 0.3s ease;
+}
+
+.open {
+  max-height: 200px; /* 임시 값 */
+}
+
+.detailContent {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #ccc;
 }

@@ -28,12 +28,16 @@ export default function WinRateBars({ white, black }: Props) {
     }
   }
 
+  const winColor = "#2a68af"
+  const drawColor = "#8a8a8a"
+  const lossColor = "#d43c31"
+
   const renderBar = (label: string, record: Record) => {
     const rate = calcRate(record)
-
+    
     return (
       <div style={{ marginBottom: "16px" }}>
-        <div style={{ marginBottom: "4px" }}>{label}</div>
+        <div style={{ marginBottom: "4px", fontFamily: "var(--font-noto)", color: "#ccc" }}>{label}</div>
 
         {/* 메인 막대 */}
         <div style={{
@@ -41,32 +45,50 @@ export default function WinRateBars({ white, black }: Props) {
           height: "24px",
           width: "100%",
           borderRadius: "6px",
-          overflow: "hidden",
+          position: "relative"
         }}>
-          <div
+          {record.win!=0 ? (<div
+            className={`
+              ${styles.bar_segment} 
+              ${(record.draw===0 && record.loss===0)? styles.bar_bothRound : styles.bar_leftRound}
+              `}
             style={{
               width: `${rate.win}%`,
-              background: "#4caf50",
-              position: "relative"
+              background: winColor,
             }}
-            title={`Win: ${record.win}`}
-          />
-          <div
+            title={`Win: ${record.win}`}>
+              {record.win}
+            </div>) : (null)}
+
+          {record.draw!=0 ? (<div
+            className={`
+              ${styles.bar_segment} 
+              ${(record.win===0 && record.loss===0)? styles.bar_bothRound : 
+                (record.win===0)? styles.bar_leftRound :
+                (record.loss===0)? styles.bar_rightRound :
+                null
+              }
+              `}
             style={{
               width: `${rate.draw}%`,
-              background: "#9e9e9e",
-              position: "relative"
+              background: drawColor,
             }}
-            title={`Draw: ${record.draw}`}
-          />
-          <div
+            title={`Draw: ${record.draw}`}>
+              {record.draw}
+            </div>) : (null)}
+
+          {record.loss!=0 ? (<div
+            className={`
+              ${styles.bar_segment} 
+              ${(record.draw===0 && record.win===0)? styles.bar_bothRound : styles.bar_rightRound}
+              `}
             style={{
               width: `${rate.loss}%`,
-              background: "#f44336",
-              position: "relative"
+              background: lossColor,
             }}
-            title={`loss: ${record.loss}`}
-          />
+            title={`loss: ${record.loss}`}>
+              {record.loss}
+            </div>) : (null)}
         </div>
       </div>
     )
@@ -75,7 +97,7 @@ export default function WinRateBars({ white, black }: Props) {
   const legendBar = () => {
     return (
       <div style={{ marginTop: "16px", marginBottom: "0px" }}>
-      {/* 👇 얇은 범례 바 */}
+      {/* 얇은 범례 바 */}
         <div
           style={{
             display: "flex",
@@ -83,25 +105,32 @@ export default function WinRateBars({ white, black }: Props) {
             marginTop: "4px",
             borderRadius: "3px",
             overflow: "hidden",
+            width: "50%",
+            marginLeft: "auto",
+            marginRight: "auto"
           }}
         >
-          <div style={{ flex: 1, background: "#4caf50" }} />
-          <div style={{ flex: 1, background: "#9e9e9e" }} />
-          <div style={{ flex: 1, background: "#f44336" }} />
+          <div style={{ flex: 1, background: winColor }} />
+          <div style={{ flex: 1, background: drawColor }} />
+          <div style={{ flex: 1, background: lossColor }} />
         </div>
 
-        {/* 👇 텍스트 라벨 (선택) */}
+        {/* 텍스트 라벨 (선택) */}
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
             fontSize: "12px",
             marginTop: "2px",
+            width: "50%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            textAlign: "center",
+            fontFamily: "var(--font-noto)",
           }}
         >
-          <span style={{ color: "#4caf50" }}>Win</span>
-          <span style={{ color: "#9e9e9e" }}>Draw</span>
-          <span style={{ color: "#f44336" }}>Loss</span>
+          <span style={{ color: winColor, width: "33.3%" }}>Win</span>
+          <span style={{ color: drawColor, width: "33.4%" }}>Draw</span>
+          <span style={{ color: lossColor, width: "33.4%" }}>Loss</span>
         </div>
         </div>
     )
@@ -110,9 +139,9 @@ export default function WinRateBars({ white, black }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.stats}>Stats</div>
-      {renderBar("Total", total)}
-      {renderBar("White", white)}
-      {renderBar("Black", black)}
+      {renderBar("Total " + "\u00A0" + String(total.win + total.draw + total.loss), total)}
+      {renderBar("White " + "\u00A0" + String(white.win + white.draw + white.loss), white)}
+      {renderBar("Black " + "\u00A0" + String(black.win + black.draw + black.loss), black)}
       {legendBar()}
     </div>
   )

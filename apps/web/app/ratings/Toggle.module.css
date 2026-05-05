@@ -1,0 +1,40 @@
+/* #region ToggleButton */
+.toggle_container {
+  width: 44px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle_container:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.toggle_container:active {
+  transform: scale(0.96);
+}
+
+.active {
+  background-color: #4caf50; /* ON 상태 색상 */
+}
+
+.toggle_circle {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 가속도 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.active .toggle_circle {
+  transform: translateX(20px);
+}
+/* #endregion */

@@ -19,14 +19,14 @@ const winners: Player[] = [
   {
     id: 2,
     name: "서명교",
-    title: "서울대 체스 오픈 우승자\nSNU CHESS OPEN WINNER",
+    title: "서울대 체스 오픈 우승자\nSNU CHESS OPEN Winner",
     date: "2026.03.28",
     image: "/image/magnus.png",
   },
   {
     id: 3,
     name: "한찬희",
-    title: "서울대 체스 U1500 우승자\nSNU CHESS U1500 WINNER",
+    title: "서울대 체스 U1500 우승자\nSNU CHESS U1500 Winner",
     date: "2026.03.28",
     image: "/image/magnus.png",
   },
@@ -36,7 +36,7 @@ export default function Page() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>
-        명예의 전당 <span>HALL OF FAME</span>
+        Hall of Fame
       </h1>
 
       <div className={styles.logo} />

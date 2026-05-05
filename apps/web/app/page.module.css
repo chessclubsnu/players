@@ -44,17 +44,20 @@
 }
 
 .title {
-    font-family: var(--font-noto);
-    font-size: 5.0rem;
-    letter-spacing: 0.15em;
+    font-family: var(--font-playfair);
+    font-size: clamp(2rem, 10vw, 5rem);
+    letter-spacing: clamp(0.05em, 0.5vw, 0.15em);
     font-weight: bold;
 }
 
 .description {
+    font-family: var(--font-notoSerif);
+    font-size: clamp(0.5rem, 3.5vw, 1.3rem);
+    letter-spacing: clamp(0.017em, 0.5vw, 0.05em);
+    color: #888;
+    font-weight: normal;
+
     margin-top: 12px;
-    font-size: 1.3rem;
-    letter-spacing: 0.05em;
-    color: #666;
 }
 
 .grid {
@@ -62,13 +65,20 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
+
+    justify-content: center;
+    justify-items: center;
 }
 
 .card {
   display: block;
-  padding: 20px;
+  padding: 25px 20px 25px 40px;
   border-radius: 12px;
   border: 1px solid #ddd;
+  width: 70%;
+
+  font-family: var(--font-notoSerif);
+  font-weight: normal;
   text-align: left;
   text-decoration: none;
   color: inherit;

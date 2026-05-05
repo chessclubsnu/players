@@ -32,13 +32,15 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-family: var(--font-notoSerif);
+  font-size: clamp(1.2rem, 6vw, 3rem);
+  letter-spacing: clamp(0.03em, 0.3vw, 0.09em);
   font-weight: bold;
 }
 
 .title span {
   font-size: 1.2rem;
-  color: #666;
+  color: #aaaaaa;
   margin-left: 8px;
 }
 
@@ -101,13 +103,16 @@
 .name {
   font-weight: bold;
   font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .info {
-  margin-top: 6px;
-  color: #777;
+  font-family: var(--font-notoSerif);
+  margin-top: 8px;
+  color: #afafaf;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 /* 데스크탑 대응 */

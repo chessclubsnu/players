@@ -1,0 +1,18 @@
+.container {
+  max-width: 600px;
+  margin: 10px auto 0;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 0px;
+}
+
+.stats {
+    font-size: 1.2rem;
+    text-align: center;
+    /* margin-right: 30px; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

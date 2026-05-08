@@ -1,9 +1,10 @@
 /* #region ToggleButton */
 .toggle_container {
-  width: 44px;
-  height: 24px;
+  width: 2.8rem;
+  height: 1.5rem;
+  
   background-color: #ccc;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease;

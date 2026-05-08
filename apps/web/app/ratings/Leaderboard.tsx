@@ -6,7 +6,7 @@ import styles from './Leaderboard.module.css';
 import WinRateBars from './renderbar';
 import ProgressGraphics from './progress_graphics';
 
-
+// #region Types
 // type player = {
 //     name: string
 //     student_id: string
@@ -60,6 +60,7 @@ type Props = {
     lastRanking: RankingType[]
     playersProgress: PlayerProgressType[]
 }
+// #endregion
 
 export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking, lastRanking, playersProgress }: Props) {
   // #region Show/Hide Details
@@ -104,6 +105,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
   }
   // #endregion
 
+  // #region Process Data
   function attach$Stats$Name2Ranking(
     ranking: RankingType[],
     playersProgress: PlayerProgressType[]
@@ -183,6 +185,8 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
 
   const currentAttach_progress_diff = attachDiff(currentAttach_progress, lastRanking)
 
+  // #endregion
+
   function nWsign(n: number, arrow: boolean) {
     const ans = 
         arrow===true ?
@@ -202,82 +206,101 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
   const fallColor2 = "d82d2d"
 
   return (
-    <div className={styles.container}>
-        <div className={styles.blankRow}>
+    <div className="w-[90%] md:w-[60%] lg:w-[50%] max-w-[500px] mx-auto mt-10 mb-16 flex flex-col">
+        <div className="flex flex-row ml-4 mb-8">
             <Toggle
                 isOn={showDiff}
                 onToggle={handleToggle}
-                label={showDiff ? "Hide Changes" : "Show Changes"}
+                label={showDiff ? "Show Changes" : "Show Changes"}
+                alpha={showDiff ? 0.8: 0.8}
             />
         </div>
-        <div className={styles.headerRow}>
-            <div className={styles.rank}>#</div>
+
+        <div className="w-full grid grid-cols-[20%_1fr_34%] items-center max-h-10 bg-transparent">
+
+            <div className="text-left font-notoSerif font-bold text-xl md:text-2xl ml-6">#</div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
-            <div className={styles.name}>Name</div>
-            <div className={styles.rating} style={{ marginRight: "35px" }}>Rating</div>
+            <div className="text-center font-notoSerif font-bold text-xl md:text-2xl">Name</div>
+            <div className="text-center font-notoSerif font-bold text-xl md:text-2xl w-full">Rating</div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
         </div>
 
-        {currentAttach_progress_diff.map((player, index) => (
-            <div key={player.chessclub_id} className={styles.block}>
-            {/* 기본 row */}
-            <div
-                className={`${styles.row} ${
-                openId === player.chessclub_id ? styles.active : ""
-                }`}
-                onClick={() => handleClick(player.chessclub_id)}
-            >
-                <div className={styles.rankBlock}>
-                    <div className={styles.rank}>{player.rank}</div>
-                    
-                    <div 
-                        className={`${styles.rank_diff} ${!showDiff ? styles.hidden : ""}`}
-                        style={{ color: (player.rank_diff>0) ? climbColor : fallColor }}
-                        >
-                        {nWsign(player.rank_diff, true)}
+        <div className="bottom-0 translate-x-[4%] w-[90%] h-[1.5px] mt-0.5 md:mt-1 mb-1 bg-white/90"></div>
+
+        <div className="w-full flex flex-col gap-0">
+            {currentAttach_progress_diff.map((player, index) => (
+                <div key={player.chessclub_id} className="flex flex-col gap-0">
+
+                    {/* 기본 row */}
+                    <div
+                        className={`grid grid-cols-[20%_1fr_34%] items-center h-12 md:h-12 lg:h-16 py-[0.3rem] px-0 mt-0 mb-0 rounded-lg gap-0
+                            hover:cursor-pointer hover:bg-[#999]/50 hover:scale-[1.02] active:brightness-90 font-noto font-medium ${
+                            openId === player.chessclub_id ? styles.active : ""
+                        }`}
+                        onClick={() => handleClick(player.chessclub_id)}
+                    >
+                        {/* 순위 */}
+                        <div className="flex flex-row items-end gap-0">
+                            <div className="text-left font-notoSerif font-normal text-xl md:text-2xl ml-6">{player.rank}</div>
+                            
+                            <div 
+                                className={`text-left font-notoSerif font-light text-base md:text-xl ml-2 ${!showDiff ? styles.hidden : ""}`}
+                                style={{ color: (player.rank_diff>0) ? climbColor : fallColor }}
+                                >
+                                {nWsign(player.rank_diff, true)}
+                            </div>
+                        </div>
+                        
+                        {/* 이름 */}
+                        <div className="text-center font-notoSerif font-normal text-xl md:text-2xl bg-transparent">{player.name}</div>
+
+                        {/* 레이팅 */}
+                        <div className="w-full grid grid-cols-[30%_1fr]">
+                            <div>
+                                {}
+                            </div>
+                            <div className="flex flex-row items-end justify-left gap-0 pl bg-transparent">
+                                <div className="text-right font-notoSerif font-normal text-xl md:text-2xl mr-0 bg-transparent">
+                                    {Math.floor(player.rating_end)}
+                                </div>
+
+                                <div 
+                                    className={`text-right font-notoSerif text-base md:text-xl font-normal ml-2 ${!showDiff ? styles.hidden : ""}`}
+                                    style={{ color: (player.rating_diff>0) ? climbColor : fallColor }}
+                                    >
+                                    {nWsign(player.rating_diff, false)}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                        
+                    {/* 확장 영역 */}
+                    <div
+                        ref={(el) => {
+                            refs.current[player.chessclub_id] = el
+                        }}
+                        className={`${styles.detail} ${
+                        openId === player.chessclub_id ? styles.open : ""
+                        }`}
+                    >
+                        <div className={styles.detailContent}>
+                            <WinRateBars white={{
+                                win: player.stats.total.win_w,
+                                draw: player.stats.total.draw_w,
+                                loss: player.stats.total.loss_w
+                            }}
+                            black={{
+                                win: player.stats.total.win_b,
+                                draw: player.stats.total.draw_b,
+                                loss: player.stats.total.loss_b
+                            }}/>
 
-                <div className={styles.name}>{player.name}</div>
-
-                <div className={styles.ratingBlock}>
-                    <div className={styles.rating}>{Math.floor(player.rating_end)}</div>
-
-                    <div 
-                        className={`${styles.rating_diff} ${!showDiff ? styles.hidden : ""}`}
-                        style={{ color: (player.rating_diff>0) ? climbColor : fallColor }}
-                        >
-                        {nWsign(player.rating_diff, false)}
+                            <ProgressGraphics data={player.stats.rows} />
+                        </div>
                     </div>
-                </div>
             </div>
-                
-            {/* 확장 영역 */}
-            <div
-                ref={(el) => {
-                    refs.current[player.chessclub_id] = el
-                }}
-                className={`${styles.detail} ${
-                openId === player.chessclub_id ? styles.open : ""
-                }`}
-            >
-                <div className={styles.detailContent}>
-                    <WinRateBars white={{
-                        win: player.stats.total.win_w,
-                        draw: player.stats.total.draw_w,
-                        loss: player.stats.total.loss_w
-                    }}
-                    black={{
-                        win: player.stats.total.win_b,
-                        draw: player.stats.total.draw_b,
-                        loss: player.stats.total.loss_b
-                    }}/>
-
-                    <ProgressGraphics data={player.stats.rows} />
-                </div>
-            </div>
-            </div>
-        ))}
+            ))}
+        </div>
     </div>
   );
 }

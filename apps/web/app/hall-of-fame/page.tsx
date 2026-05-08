@@ -35,11 +35,13 @@ const winners: Player[] = [
 export default function Page() {
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>
+      <h1 className="flex flex-col items-center text-white leading-tight font-normal text-3xl mb-12">
         Hall of Fame
+        <span className="text-lg font-light text-[#aaa] mb-lg">
+          체스클럽 명예의 전당
+        </span>
       </h1>
 
-      <div className={styles.logo} />
       <div className={styles.container}>
         {winners.map((player) => (
           <div key={player.id} className={styles.player}>
@@ -48,7 +50,7 @@ export default function Page() {
               style={{ backgroundImage: `url(${player.image})` }}
             />
 
-            <div className={styles.description}>
+            <div className={styles.description_block}>
               <div className={styles.name}>{player.name}</div>
               <div className={styles.info}>
                 {player.title.split("\n").map((line, i) => (

@@ -23,6 +23,7 @@ type Props = {
   data: ProgressRow[];
 };
 
+// #region Process Periods
 function sortPeriod(a: string, b: string) {
   const parse = (p: string) => {
     const yearMonth = p.slice(0, 6);
@@ -112,7 +113,7 @@ function fillMissingPeriods(data: any[]) {
 
         result.push({
         period: formatPeriodCode(cursor),
-        rating: curr.rating, // ⭐ forward fill
+        rating: curr.rating, // forward fill
         white: { win: 0, draw: 0, loss: 0 },
         black: { win: 0, draw: 0, loss: 0 },
         });
@@ -123,6 +124,7 @@ function fillMissingPeriods(data: any[]) {
 
     return result;
 }
+// #endregion
 
 function CustomTooltip({ active, payload }: any) {
   if (!active || !payload || !payload.length) return null;
@@ -131,38 +133,40 @@ function CustomTooltip({ active, payload }: any) {
   const period = formatPeriod(data.period);
 
   return (
-    <div
-      style={{
-        background: '#ccc',
-        color: '#000000',
-        padding: '10px 12px',
-        borderRadius: 8,
-        fontSize: 12,
-        fontFamily: "var(--font-noto)",
-        lineHeight: 1.5,
-        boxShadow: '0 4px 12px rgba(116, 116, 116, 0.71)',
-      }}
-    >
+    <div className="bg-[#ccc] text-black rounded-lg font-inter leading-normal shadow-[0_4px_12px_rgba(116,116,116,0.71)]
+                    /* 모바일: 크기 */
+                    px-1.5 py-1.5 text-2 min-w-20
+                    /* md 이상: 크기 */
+                    md:px-3 md:py-2.5 md:text-3 md:min-w-40">
+      
       {/* period */}
-      <div style={{ fontWeight: 600, marginBottom: 5 }}>
+      <div className="font-semibold mb-1 md:mb-1.5">
         {period.text}
       </div>
 
       {/* rating */}
-      <div>Rating: {data.rating}</div>
+      <div className="font-medium">Rating: {data.rating}</div>
 
-      <hr style={{ borderColor: '#000000', margin: '5px 0' }} />
+      <hr className="border-black my-1 md:my-1.5" />
 
       {/* White */}
-      <div>
-        <b>White</b>
-        <div style={{ marginTop: 0}}>W: {data.white.win} &nbsp;&nbsp; D: {data.white.draw} &nbsp;&nbsp; L: {data.white.loss}</div>
+      <div className="mb-1">
+        <b className="font-bold">White</b>
+        <div className="flex gap-2 md:gap-3 mt-0">
+          <span>W: {data.white.win}</span>
+          <span>D: {data.white.draw}</span>
+          <span>L: {data.white.loss}</span>
+        </div>
       </div>
 
       {/* Black */}
-      <div style={{ marginTop: 4 }}>
-        <b>Black</b>
-        <div style={{ marginTop: 0}}>W: {data.black.win} &nbsp;&nbsp; D: {data.black.draw} &nbsp;&nbsp; L: {data.black.loss}</div>
+      <div className="mt-1 md:mt-1.5">
+        <b className="font-bold">Black</b>
+        <div className="flex gap-2 md:gap-3 mt-0">
+          <span>W: {data.black.win}</span>
+          <span>D: {data.black.draw}</span>
+          <span>L: {data.black.loss}</span>
+        </div>
       </div>
     </div>
   );
@@ -194,65 +198,66 @@ export default function ProgressGraphics({ data }: Props) {
 
   return (
     <div className={styles.container}>
-        <div className={styles.stats}>
+        <div className="text-xl font-notoSerif text-center mb-2">
             Progress
         </div>
-        <ResponsiveContainer width="100%" height={370}>
-        <LineChart 
-            data={completeData} 
-            margin={{ top:20, bottom:0, right:20 }}
-            
-        >
-            <CartesianGrid strokeDasharray="3 3" />
 
-            <XAxis 
-                dataKey="period"
-                tickMargin={30}
-                height={60}
-                tick={({ x, y, payload }) => {
-                    const value = payload.value;
+        <ResponsiveContainer width="100%" aspect={1} minHeight={0} minWidth={0}>
+          <LineChart 
+              data={completeData} 
+              margin={{ top:20, bottom:0, right:20, left:0 }}              
+          >
+              <CartesianGrid strokeDasharray="3 3" />
 
-                    const { text, month, monthLabel, year, halfLabel } = formatPeriod(value)
+              <XAxis 
+                  dataKey="period"
+                  tickMargin={25}
+                  height={60}
+                  tick={({ x, y, payload }) => {
+                      const value = payload.value;
 
-                    return (
-                        <text 
-                            x={x} y={y} textAnchor="middle"
-                            fill="#CCC"
-                            fontSize={13}
-                            fontFamily="var(--font-noto)"
-                        >
-                            <tspan x={x} dy="0">{year}-{monthLabel},</tspan>
-                            {/* <tspan x={x} dy="14">{year}</tspan> */}
-                            <tspan x={x} dy="20">{halfLabel}</tspan>
-                        </text>
-                    );
-                }}
-            />
-            <YAxis 
-                domain={[ticks[0], ticks[ticks.length - 1]]}
-                ticks={ticks}
-                tick={{ 
-                  fontFamily: 'var(--font-noto)', 
-                  fontSize: 14, 
-                  fill: '#ccc' 
-                }}
-            />
+                      const { text, month, monthLabel, year, halfLabel } = formatPeriod(value)
 
-            <Tooltip 
-                cursor={ false }
-                // trigger="hover"
-                content={<CustomTooltip />} 
-            />
+                      return (
+                          <text 
+                              x={x} y={y} textAnchor="middle"
+                              fill="#CCC"
+                              fontSize={13}
+                              fontFamily="var(--font-inter)"
+                          >
+                              <tspan x={x} dy="0">{year}-{monthLabel},</tspan>
+                              {/* <tspan x={x} dy="14">{year}</tspan> */}
+                              <tspan x={x} dy="20">{halfLabel}</tspan>
+                          </text>
+                      );
+                  }}
+              />
+              <YAxis 
+                  domain={[ticks[0], ticks[ticks.length - 1]]}
+                  ticks={ticks}
+                  tick={{ 
+                    fontFamily: 'var(--font-noto)', 
+                    fontSize: 14, 
+                    fill: '#ccc' 
+                  }}
+              />
 
-            <Line
-                type="linear"
-                dataKey="rating"
-                stroke="#e2d849"
-                strokeWidth={3}
-                dot={{ r: 4 }}
-                activeDot={{ r: 6 }}
-            />
-        </LineChart>
+              <Tooltip 
+                  cursor={ false }
+                  wrapperStyle={{ outline: 'none', fontSize: 'none' }}
+                  // trigger="hover"
+                  content={<CustomTooltip />} 
+              />
+
+              <Line
+                  type="linear"
+                  dataKey="rating"
+                  stroke="#e2d849"
+                  strokeWidth={3}
+                  dot={{ r: 4 }}
+                  activeDot={{ r: 6 }}
+              />
+          </LineChart>
         </ResponsiveContainer>
     </div>
   );

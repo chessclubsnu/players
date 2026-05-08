@@ -1,7 +1,8 @@
 .main {
   position: relative;
-  padding: 40px 20px;
+  padding: 2.5rem 1.25rem;
   text-align: center;
+  font-family: var(--font-notoSerif);
 }
 
 .main::before {
@@ -15,9 +16,9 @@
   height: 500px;
   transform: translate(-50%, -50%);
 
-  background: url("/image/logo.png") center no-repeat;
+  /* background: url("/image/logo.png") center no-repeat;
   background-size: contain;
-  filter: blur(0px);
+  filter: blur(0px); */
 
   opacity: 0.1; /* 은은하게 */
 
@@ -41,7 +42,7 @@
 .title span {
   font-size: 1.2rem;
   color: #aaaaaa;
-  margin-left: 8px;
+  margin-left: 0.5rem;
 }
 
 /* .logo {
@@ -95,7 +96,7 @@
   transition: transform 0.3s ease;
 }
 
-.description {
+.description_block {
   margin-top: 12px;
   margin-bottom: 24px;
 }
@@ -103,6 +104,8 @@
 .name {
   font-weight: bold;
   font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+
   margin-top: 10px;
   margin-bottom: 10px;
 }

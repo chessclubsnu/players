@@ -21,11 +21,14 @@ export default async function Page() {
   
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>
-        Leaderboard <span>1st Half, May 2026</span>
+      <h1 className="flex flex-col leading-tight text-white font-notoSerif font-normal text-3xl mb-12">
+        Leaderboard
+        <span className="text-lg font-light text-[#aaa] font-notoSerif -mt-lg">
+          1st Half, May 2026
+        </span>
         {/* 읽어온 데이터를 Props로 전달 */}
         <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 
-        currentRanking={currentRanking} lastRanking={lastRanking} playersProgress={playersProgress} />
+          currentRanking={currentRanking} lastRanking={lastRanking} playersProgress={playersProgress} />
       </h1>
     </main>
   );

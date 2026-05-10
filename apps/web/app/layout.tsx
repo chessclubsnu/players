@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Noto_Sans_KR, Playfair_Display, Noto_Serif_KR, Inter, Lora } from "next/font/google"
 import "./globals.css";
 import Navbar from "./Navbar"
+import ScrollToTopButton from './ScrollToTopButton';
 
 // #region Fonts
 const geistSans = localFont({
@@ -70,6 +71,8 @@ export default function RootLayout({
       <Navbar/>
 
       {children}
+
+      <ScrollToTopButton />
       </body>
     </html>
   );

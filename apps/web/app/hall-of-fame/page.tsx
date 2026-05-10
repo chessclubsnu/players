@@ -11,24 +11,24 @@ type Player = {
 const winners: Player[] = [
   {
     id: 1,
-    name: "???",
+    name: "김성범",
     title: "제1회 아레나 나잇 우승자\nArena Night Winner",
     date: "2026.3.13",
-    image: "/image/hikaru.png",
+    image: "/image/hall-of-fame/hf_1.png",
   },
   {
     id: 2,
     name: "서명교",
     title: "서울대 체스 오픈 우승자\nSNU CHESS OPEN Winner",
     date: "2026.03.28",
-    image: "/image/magnus.png",
+    image: "/image/hall-of-fame/hikaru.png"
   },
   {
     id: 3,
     name: "한찬희",
     title: "서울대 체스 U1500 우승자\nSNU CHESS U1500 Winner",
     date: "2026.03.28",
-    image: "/image/magnus.png",
+    image: "/image/hall-of-fame/hf_3.png",
   },
 ]
 

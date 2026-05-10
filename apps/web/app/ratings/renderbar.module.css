@@ -1,22 +1,3 @@
-.container {
-  max-width: 600px;
-  margin: 10px auto 0;
-  margin-bottom: 30px;
-
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  gap: 0px;
-}
-
-.stats {
-    font-family: var(--font-noto);
-    font-size: 1.2rem;
-    text-align: center;
-    /* margin-right: 30px; */
-    margin-bottom: 10px;
-}
-
 .bar_segment {
   position: relative;
   height: 100%;

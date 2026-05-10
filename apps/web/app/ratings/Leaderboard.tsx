@@ -1,10 +1,11 @@
-'use client'; // 클라이언트 컴포넌트 선언
+'use client';
 
-import React, { useState , useRef } from 'react';
+import React, { useState , useRef, useCallback } from 'react';
 import Toggle from "./Toggle";
 import styles from './Leaderboard.module.css';
 import WinRateBars from './renderbar';
 import ProgressGraphics from './progress_graphics';
+import useRipple from './ripple';
 
 // #region Types
 // type player = {
@@ -37,7 +38,7 @@ type RankingType = {
 }
 
 type PlayerProgressType = {
-    student_id: number
+    student_id: string
     name: string
     period: string
     rating_start: number
@@ -115,24 +116,24 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
         .filter((p) => p.chessclub_id === player.chessclub_id)
         .reduce(
             (acc, p) => {
-            acc.rows.push({
-                period: p.period,
-                rating: Math.floor(p.rating_end),
-                white: { win: p.win_w, draw: p.draw_w, loss: p.loss_w },
-                black: { win: p.win_b, draw: p.draw_b, loss: p.loss_b },
-            });
+                acc.rows.push({
+                    period: p.period,
+                    rating: Math.floor(p.rating_end),
+                    white: { win: p.win_w, draw: p.draw_w, loss: p.loss_w },
+                    black: { win: p.win_b, draw: p.draw_b, loss: p.loss_b },
+                });
 
-            acc.total.win += (p.win_w ?? 0) + (p.win_b ?? 0);
-            acc.total.draw += (p.draw_w ?? 0) + (p.draw_b ?? 0);
-            acc.total.loss += (p.loss_w ?? 0) + (p.loss_b ?? 0);
-            acc.total.win_w += (p.win_w ?? 0);
-            acc.total.win_b += (p.win_b ?? 0);
-            acc.total.draw_w += (p.draw_w ?? 0);
-            acc.total.draw_b += (p.draw_b ?? 0);
-            acc.total.loss_w += (p.loss_w ?? 0);
-            acc.total.loss_b += (p.loss_b ?? 0);
-                   
-            return acc;
+                acc.total.win += (p.win_w ?? 0) + (p.win_b ?? 0);
+                acc.total.draw += (p.draw_w ?? 0) + (p.draw_b ?? 0);
+                acc.total.loss += (p.loss_w ?? 0) + (p.loss_b ?? 0);
+                acc.total.win_w += (p.win_w ?? 0);
+                acc.total.win_b += (p.win_b ?? 0);
+                acc.total.draw_w += (p.draw_w ?? 0);
+                acc.total.draw_b += (p.draw_b ?? 0);
+                acc.total.loss_w += (p.loss_w ?? 0);
+                acc.total.loss_b += (p.loss_b ?? 0);
+                    
+                return acc;
             },
             {
                 rows: [] as any[],
@@ -144,14 +145,18 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
             }
         );
 
-      const name = playersProgress.find(
+      const target = playersProgress.find(
         (p) =>
             p.chessclub_id === player.chessclub_id
-      )?.name
+      );
+
+      const name = target?.name
+      const student_id = target?.student_id
 
       return {
         ...player,
         name,
+        student_id,
         stats
       }
     })
@@ -205,8 +210,10 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
   const fallColor = "#d84036"
   const fallColor2 = "d82d2d"
 
+  const ripple = useRipple("rgba(255,255,255,0.35)")
+
   return (
-    <div className="w-[90%] md:w-[60%] lg:w-[50%] max-w-[500px] mx-auto mt-10 mb-16 flex flex-col">
+    <div className="w-[95%] md:w-[70%] lg:w-[50%] max-w-[700px] mr-auto md:mx-auto mt-10 mb-16 flex flex-col select-none">
         <div className="flex flex-row ml-4 mb-8">
             <Toggle
                 isOn={showDiff}
@@ -216,16 +223,19 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
             />
         </div>
 
-        <div className="w-full grid grid-cols-[20%_1fr_34%] items-center max-h-10 bg-transparent">
+        <div className="w-full grid grid-cols-[20%_1fr_30%] items-center max-h-10 bg-transparent">
 
             <div className="text-left font-notoSerif font-bold text-xl md:text-2xl ml-6">#</div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
-            <div className="text-center font-notoSerif font-bold text-xl md:text-2xl">Name</div>
-            <div className="text-center font-notoSerif font-bold text-xl md:text-2xl w-full">Rating</div>
+            <div className="text-center font-notoSerif font-bold text-xl md:text-2xl">Name / ID</div>
+            <div className="flex">
+                <div className="flex justify-start ml-[1%] md:ml-[20%] text-center font-notoSerif font-bold text-xl md:text-2xl w-full">Rating</div>
+            </div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
         </div>
 
-        <div className="bottom-0 translate-x-[4%] w-[90%] h-[1.5px] mt-0.5 md:mt-1 mb-1 bg-white/90"></div>
+        {/* 헤더 언더라인 */}
+        <div className="bottom-0 translate-x-[5%] w-[90%] md:w-[98%] md:translate-x-[1%] h-[1.5px] mt-0.5 md:mt-1 mb-1 bg-white/90"></div>
 
         <div className="w-full flex flex-col gap-0">
             {currentAttach_progress_diff.map((player, index) => (
@@ -233,11 +243,19 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
 
                     {/* 기본 row */}
                     <div
-                        className={`grid grid-cols-[20%_1fr_34%] items-center h-12 md:h-12 lg:h-16 py-[0.3rem] px-0 mt-0 mb-0 rounded-lg gap-0
-                            hover:cursor-pointer hover:bg-[#999]/50 hover:scale-[1.02] active:brightness-90 font-noto font-medium ${
-                            openId === player.chessclub_id ? styles.active : ""
-                        }`}
-                        onClick={() => handleClick(player.chessclub_id)}
+                        className={`relative overflow-hidden 
+                            grid grid-cols-[28%_1fr_32%] md:grid-cols-[24%_1fr_34%]
+                            items-center h-12 md:h-12 lg:h-16 
+                            py-[0.3rem] px-0 mt-0 mb-0 rounded-lg gap-0
+                            hover:cursor-pointer md:hover:bg-[#999]/50 md:hover:scale-[1.02]
+                            active:translate-y-0.5
+                            font-noto font-medium 
+                            ${openId === player.chessclub_id ? styles.active : ""}
+                        `}
+                        onClick={(e) => {
+                            ripple(e);
+                            handleClick(player.chessclub_id);
+                        }}
                     >
                         {/* 순위 */}
                         <div className="flex flex-row items-end gap-0">
@@ -252,20 +270,24 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                         </div>
                         
                         {/* 이름 */}
-                        <div className="text-center font-notoSerif font-normal text-xl md:text-2xl bg-transparent">{player.name}</div>
+                        <div className="grid grid-cols-[50%_1fr] bg-transparent">
+                            <div className="flex h-full items-center justify-end px-1 text-center font-notoSerif font-normal text-xl md:text-2xl bg-transparent">{player.name}</div>
+                            <div className="flex h-full items-end justify-start leading-none px-1 text-white/30 font-inter font-normal text-sm md:text-base bg-transparent">{player.student_id}</div>
+                        </div>
 
                         {/* 레이팅 */}
-                        <div className="w-full grid grid-cols-[30%_1fr]">
+                        <div className="w-full grid grid-cols-[10%_1fr_20%] bg-transparent">
                             <div>
                                 {}
                             </div>
-                            <div className="flex flex-row items-end justify-left gap-0 pl bg-transparent">
+
+                            <div className="grid grid-cols-[70%_30%] items-end justify-left gap-0 pl bg-transparent">
                                 <div className="text-right font-notoSerif font-normal text-xl md:text-2xl mr-0 bg-transparent">
                                     {Math.floor(player.rating_end)}
                                 </div>
 
                                 <div 
-                                    className={`text-right font-notoSerif text-base md:text-xl font-normal ml-2 ${!showDiff ? styles.hidden : ""}`}
+                                    className={`bg-transparent text-left font-notoSerif text-base md:text-xl font-normal ml-1 md:ml-2 ${!showDiff ? styles.hidden : ""}`}
                                     style={{ color: (player.rating_diff>0) ? climbColor : fallColor }}
                                     >
                                     {nWsign(player.rating_diff, false)}

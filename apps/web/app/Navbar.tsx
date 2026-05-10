@@ -23,25 +23,28 @@ export default function Navbar() {
       <nav className="border-b border-gray-300 px-4 py-3 relative z-50">
         <div className="text-white grid grid-cols-[33%_33%_34%] items-center">
           {/* 로고 */}
-          <Link href="/" className="flex flex-row justify-start">
+          <div className="grid grid-cols-[55%_1fr]">
+            <Link href="/" className="flex flex-row justify-start md:hover:brightness-50 transition-all duration-300 cursor-pointer
+              active:brightness-50">
+              <Image 
+              src="/image/svg_logo.svg"
+              alt="ChessClub Logo"
+              width={24}
+              height={18}
+              className="rounded-sm mr-1"
+              ></Image>
+              <div className="font-noto font-semibold text-lg">
+                ChessClub
+              </div>
+            </Link>
 
-            <Image 
-            src="/image/svg_logo.svg"
-            alt="ChessClub Logo"
-            width={24}
-            height={18}
-            className="rounded-sm mr-1 md:hover:brightness-50 transition-all duration-300 cursor-pointer"
-            ></Image>
-            <div className="md:hover:text-gray-500 transition font-noto font-semibold text-lg">
-              ChessClub
-            </div>
-          </Link>
-          
+            <div>{}</div>
+          </div>
 
           {/* 데스크탑 메뉴 */}
-          <div className="invisible md:visible md:flex justify-center gap-8 font-normal font-notoSerif">
-            <Link href="/hall-of-fame" className="inline-block md:hover:text-gray-500 transition-colors">Hall of Fame</Link>
-            <Link href="/ratings" className="inline-block md:hover:text-gray-500 transition-colors">Ratings</Link>
+          <div className="invisible md:visible md:flex justify-center gap-8 font-normal font-notoSerif transition-all duration-300">
+            <Link href="/hall-of-fame" className="inline-block md:hover:brightness-50">Hall of Fame</Link>
+            <Link href="/ratings" className="inline-block md:hover:brightness-50">Ratings</Link>
           </div>
 
           {/* 데스크탑 소셜 아이콘 */}
@@ -113,13 +116,13 @@ export default function Navbar() {
             <FiX />
           </button>
 
-          <Link href="/" onClick={() => setOpen(false)} className="text-white hover:text-gray-500 font-notoSerif">
+          <Link href="/" onClick={() => setOpen(false)} className="text-white active:text-gray-500 font-notoSerif">
             Home
           </Link>
-          <Link href="/hall-of-fame" onClick={() => setOpen(false)} className="text-white hover:text-gray-500 font-notoSerif">
+          <Link href="/hall-of-fame" onClick={() => setOpen(false)} className="text-white active:text-gray-500 font-notoSerif">
             Hall of Fame
           </Link>
-          <Link href="/ratings" onClick={() => setOpen(false)} className="text-white hover:text-gray-500 font-notoSerif">
+          <Link href="/ratings" onClick={() => setOpen(false)} className="text-white active:text-gray-500 font-notoSerif">
             Ratings
           </Link>
 
@@ -128,6 +131,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer" 
                 aria-label="Instagram"
+                className="transition-all duration-300 active:brightness-50"
                 style={{ color: "#E1306C", display: "flex" }}>
               <SiInstagram size={26} />
             </a>
@@ -135,6 +139,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer" 
                 aria-label="카톡채널" 
+                className="transition-all duration-300 active:brightness-50"
                 style={{ color: "#FEE500", display: "flex", backgroundColor: "#3C1E1E", 
                     borderRadius: "4px", padding: "2px" }} >
               <SiKakaotalk size={22} />

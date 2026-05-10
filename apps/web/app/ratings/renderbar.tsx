@@ -100,7 +100,7 @@ export default function WinRateBars({ white, black }: Props) {
         </div>
 
         {/* 텍스트 라벨 */}
-        <div className="flex flex-row text-[0.75rem] mt-0.5 w-[65%] md:w-half mx-auto text-center">
+        <div className="flex flex-row text-3 lg:text-4 mt-0.5 w-[65%] md:w-half mx-auto text-center">
           <span style={{ color: winColor, width: "33.3%" }}>Win</span>
           <span style={{ color: drawColor, width: "33.4%" }}>Draw</span>
           <span style={{ color: lossColor, width: "33.4%" }}>Loss</span>
@@ -110,8 +110,8 @@ export default function WinRateBars({ white, black }: Props) {
   }
 
   return (
-    <div className={styles.container}>
-      <div className="text-xl font-notoSerif text-center mb-2">Stats</div>
+    <div className="flex flex-col mx-auto mb-4 md:mb-10 w-[90%] gap-0">
+      <div className="text-xl md:text-2xl font-notoSerif text-center mb-2">Stats</div>
       {renderBar("Total " + "\u00A0" + String(total.win + total.draw + total.loss), total)}
       {renderBar("White " + "\u00A0" + String(white.win + white.draw + white.loss), white)}
       {renderBar("Black " + "\u00A0" + String(black.win + black.draw + black.loss), black)}

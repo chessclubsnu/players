@@ -3,6 +3,7 @@
   padding: 2.5rem 1.25rem;
   text-align: center;
   font-family: var(--font-notoSerif);
+  margin-bottom: 3rem;
 }
 
 .main::before {
@@ -83,12 +84,12 @@
 }
 
 .player:hover .photocard {
-    filter: brightness(0.95);
+    filter: brightness(1);
 }
 
 .photocard {
   width: 200px;
-  height: 260px;
+  height: 250px;
   border-radius: 12px;
   background-size: cover;
   background-position: center;

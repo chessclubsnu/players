@@ -20,20 +20,20 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="border-b border-gray-300 px-4 py-3 relative z-50">
-        <div className="text-white grid grid-cols-[33%_33%_34%] items-center">
+      <nav className="border-b border-gray-300 px-4 py-1 md:py-3 relative z-50">
+        <div className="text-white grid grid-cols-[33%_33%_34%] items-center px-0">
           {/* 로고 */}
           <div className="grid grid-cols-[55%_1fr]">
             <Link href="/" className="flex flex-row justify-start md:hover:brightness-50 transition-all duration-300 cursor-pointer
-              active:brightness-50">
+              active:brightness-50 p-0">
               <Image 
               src="/image/svg_logo.svg"
               alt="ChessClub Logo"
-              width={24}
-              height={18}
-              className="rounded-sm mr-1"
+              width={16}
+              height={20}
+              className="rounded-sm mr-[0.4rem]"
               ></Image>
-              <div className="font-noto font-semibold text-lg">
+              <div className="flex items-center bg-transparent leading-0 text-center font-semibold font-noto text-[1.1rem]">
                 ChessClub
               </div>
             </Link>

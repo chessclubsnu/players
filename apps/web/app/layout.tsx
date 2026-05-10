@@ -6,14 +6,14 @@ import Navbar from "./Navbar"
 import ScrollToTopButton from './ScrollToTopButton';
 
 // #region Fonts
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+// });
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+// });
 const futura = localFont({
   src: "./fonts/FuturaCyrillicMedium.woff",
   variable: "--font-futura"
@@ -25,7 +25,7 @@ const noto = Noto_Sans_KR ({
 });
 const playfair = Playfair_Display ({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["700"],
   variable: "--font-playfair"
 })
 const notoSerif = Noto_Serif_KR ({
@@ -64,10 +64,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} 
+      <body className={`
         ${noto.variable} ${playfair.variable} ${notoSerif.variable}
-        ${futura.variable} ${inter.variable} ${lora.variable}`}>
-
+        ${inter.variable} ${lora.variable} ${futura.variable}
+        `}>
       <Navbar/>
 
       {children}

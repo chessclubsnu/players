@@ -213,7 +213,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
   const ripple = useRipple("rgba(255,255,255,0.35)")
 
   return (
-    <div className="w-[95%] md:w-[70%] lg:w-[50%] max-w-[700px] mr-auto md:mx-auto mt-10 mb-16 flex flex-col select-none">
+    <div className="w-[95%] md:w-[70%] lg:w-[50%] max-w-[700px] mx-auto mt-10 mb-16 flex flex-col select-none">
         <div className="flex flex-row ml-4 mb-8">
             <Toggle
                 isOn={showDiff}

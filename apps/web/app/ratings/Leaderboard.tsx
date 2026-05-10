@@ -214,6 +214,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
 
   return (
     <div className="w-[95%] md:w-[70%] lg:w-[50%] max-w-[700px] mx-auto mt-10 mb-16 flex flex-col select-none">
+        {/* Show Changes 버튼 */}
         <div className="flex flex-row ml-4 mb-8">
             <Toggle
                 isOn={showDiff}
@@ -223,13 +224,14 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
             />
         </div>
 
+        {/* 헤더 */}
         <div className="w-full grid grid-cols-[20%_1fr_30%] items-center max-h-10 bg-transparent">
 
             <div className="text-left font-notoSerif font-bold text-xl md:text-2xl ml-6">#</div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
             <div className="text-center font-notoSerif font-bold text-xl md:text-2xl">Name / ID</div>
             <div className="flex">
-                <div className="flex justify-start ml-[1%] md:ml-[20%] text-center font-notoSerif font-bold text-xl md:text-2xl w-full">Rating</div>
+                <div className="flex justify-center mr-[20%] md:mr-[20%] text-center font-notoSerif font-bold text-xl md:text-2xl w-full">Rating</div>
             </div>
             {/* <div className={!showDiff ? styles.hidden : ""}></div> */}
         </div>

@@ -30,61 +30,66 @@ export default function WinRateBars({ white, black }: Props) {
 
   const winColor = "#2a68af"
   const drawColor = "#8a8a8a"
-  const lossColor = "#BD2317"
+  const lossColor = "#D04040"
 
   const renderBar = (label: string, record: Record) => {
     const rate = calcRate(record)
     
     return (
-      <div className="font-inter mb-3">
-        <div className="mb-1 text-[#ccc]">{label}</div>
-
+      <div>
         {/* 메인 막대 */}
-        <div className="flex flex-row h-5 md:h-7 w-full relative p-0 items-center text-sm md:text-base
-          bg-[rgba(255_255_255_0.08)]">
-          {record.win!=0 ? (<div
-            className={`
-              flex items-center justify-center relative h-full transition-all duration-200 font-noto text-white text-center hover:scale-105 hover:brightness-110 hover:z-10
-              ${(record.draw===0 && record.loss===0)? styles.bar_bothRound : styles.bar_leftRound}
-              `}
-            style={{
-              width: `${rate.win}%`,
-              background: winColor,
-            }}
-            title={`Win: ${record.win} (${(rate.win).toFixed(1)}%)`}>
-              {record.win}
-            </div>) : (null)}
+        {record.win + record.draw + record.loss != 0 ? (
+          <div className="font-inter mb-3">
+            <div className="mb-1 text-[#ccc]">{label}</div>
 
-          {record.draw!=0 ? (<div
-            className={`
-              flex items-center justify-center relative h-full transition-all duration-200 font-noto text-white text-center hover:scale-105 hover:brightness-110 hover:z-10
-              ${(record.win===0 && record.loss===0)? styles.bar_bothRound : 
-                (record.win===0)? styles.bar_leftRound :
-                (record.loss===0)? styles.bar_rightRound :
-                null
-              }
-              `}
-            style={{
-              width: `${rate.draw}%`,
-              background: drawColor,
-            }}
-            title={`Draw: ${record.draw} (${(rate.draw).toFixed(1)}%)`}>
-              {record.draw}
-            </div>) : (null)}
+            <div className="flex flex-row h-5 md:h-7 w-full relative p-0 items-center text-sm md:text-base
+              bg-[rgba(255_255_255_0.08)]">
+              {record.win!=0 ? (<div
+                className={`
+                  ${styles.bar_segment}
+                  ${(record.draw===0 && record.loss===0)? styles.bar_bothRound : styles.bar_leftRound}
+                  `}
+                style={{
+                  width: `${rate.win}%`,
+                  background: winColor,
+                }}
+                title={`Win: ${record.win} (${(rate.win).toFixed(1)}%)`}>
+                  {record.win}
+                </div>) : (null)}
 
-          {record.loss!=0 ? (<div
-            className={`
-              flex items-center justify-center relative h-full transition-all duration-200 font-noto text-white text-center hover:scale-105 hover:brightness-110 hover:z-10
-              ${(record.draw===0 && record.win===0)? styles.bar_bothRound : styles.bar_rightRound}
-              `}
-            style={{
-              width: `${rate.loss}%`,
-              background: lossColor,
-            }}
-            title={`Loss: ${record.loss} (${(rate.loss).toFixed(1)}%)`}>
-              {record.loss}
-            </div>) : (null)}
-        </div>
+              {record.draw!=0 ? (<div
+                className={`
+                  ${styles.bar_segment}
+                  ${(record.win===0 && record.loss===0)? styles.bar_bothRound : 
+                    (record.win===0)? styles.bar_leftRound :
+                    (record.loss===0)? styles.bar_rightRound :
+                    null
+                  }
+                  `}
+                style={{
+                  width: `${rate.draw}%`,
+                  background: drawColor,
+                }}
+                title={`Draw: ${record.draw} (${(rate.draw).toFixed(1)}%)`}>
+                  {record.draw}
+                </div>) : (null)}
+
+              {record.loss!=0 ? (<div
+                className={`
+                  ${styles.bar_segment}
+                  ${(record.draw===0 && record.win===0)? styles.bar_bothRound : styles.bar_rightRound}
+                  `}
+                style={{
+                  width: `${rate.loss}%`,
+                  background: lossColor,
+                }}
+                title={`Loss: ${record.loss} (${(rate.loss).toFixed(1)}%)`}>
+                  {record.loss}
+                </div>) : (null)}
+            </div>
+          </div>
+          ) : (null)}
+        
       </div>
     )
   }
@@ -110,7 +115,7 @@ export default function WinRateBars({ white, black }: Props) {
   }
 
   return (
-    <div className="flex flex-col mx-auto mb-4 md:mb-10 w-[90%] gap-0">
+    <div className="flex flex-col mx-auto mb-10 md:mb-12 w-[90%] gap-0">
       <div className="text-xl md:text-2xl font-notoSerif text-center mb-2">Stats</div>
       {renderBar("Total " + "\u00A0" + String(total.win + total.draw + total.loss), total)}
       {renderBar("White " + "\u00A0" + String(white.win + white.draw + white.loss), white)}

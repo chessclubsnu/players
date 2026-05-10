@@ -1,21 +1,32 @@
 .bar_segment {
+  flex-direction: row;
   position: relative;
   height: 100%;
-  transition: opacity 0.2s;
+  justify-content: center;
 
-  font-family: var(--font-noto);
+  transition: all 0.3s;
+
+  font-family: var(--font-inter);
   color: #ffffff;
   text-align: center;
+
+  border-left-width: 1px;
+  border-left-color: white;
 }
 
 .bar_leftRound {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+
+  border-left-width: 0;
 }
 
 .bar_rightRound {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
+
+  border-left-width: 1px;
+  border-left-color: white;
 }
 
 .bar_bothRound {
@@ -23,11 +34,12 @@
   border-bottom-left-radius: 6px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
+
+  border-left-width: 0;
 }
 
 .bar_segment:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  filter: brightness(1.5);
   z-index: 10;
   /* box-shadow: 0 4px 10px rgba(0,0,0,0.2); */
 }

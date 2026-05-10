@@ -271,8 +271,8 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                         
                         {/* 이름 */}
                         <div className="grid grid-cols-[50%_1fr] bg-transparent">
-                            <div className="flex h-full items-center justify-end px-1 text-center font-notoSerif font-normal text-xl md:text-2xl bg-transparent">{player.name}</div>
-                            <div className="flex h-full items-end justify-start leading-none px-1 text-white/30 font-inter font-normal text-sm md:text-base bg-transparent">{player.student_id}</div>
+                            <div className="flex h-full items-center justify-end px-1 text-center font-notoSerif font-normal text-lg md:text-2xl bg-transparent">{player.name}</div>
+                            <div className="flex h-full items-end justify-start leading-none px-1 text-white/30 font-inter font-normal text-xs md:text-base bg-transparent">{player.student_id}</div>
                         </div>
 
                         {/* 레이팅 */}
@@ -282,12 +282,12 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                             </div>
 
                             <div className="grid grid-cols-[70%_30%] items-end justify-left gap-0 pl bg-transparent">
-                                <div className="text-right font-notoSerif font-normal text-xl md:text-2xl mr-0 bg-transparent">
+                                <div className="text-right font-notoSerif font-normal text-lg md:text-2xl mr-0 bg-transparent">
                                     {Math.floor(player.rating_end)}
                                 </div>
 
                                 <div 
-                                    className={`bg-transparent text-left font-notoSerif text-base md:text-xl font-normal ml-1 md:ml-2 ${!showDiff ? styles.hidden : ""}`}
+                                    className={`bg-transparent text-left font-notoSerif text-sm md:text-xl font-normal ml-1 md:ml-2 ${!showDiff ? styles.hidden : ""}`}
                                     style={{ color: (player.rating_diff>0) ? climbColor : fallColor }}
                                     >
                                     {nWsign(player.rating_diff, false)}

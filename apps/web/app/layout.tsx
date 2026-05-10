@@ -4,6 +4,7 @@ import { Noto_Sans_KR, Playfair_Display, Noto_Serif_KR, Inter, Lora } from "next
 import "./globals.css";
 import Navbar from "./Navbar"
 import ScrollToTopButton from './ScrollToTopButton';
+import { Analytics } from '@vercel/analytics/next';
 
 // #region Fonts
 // const geistSans = localFont({
@@ -68,11 +69,12 @@ export default function RootLayout({
         ${noto.variable} ${playfair.variable} ${notoSerif.variable}
         ${inter.variable} ${lora.variable} ${futura.variable}
         `}>
-      <Navbar/>
 
-      {children}
+        <Navbar />
+        {children}
+        <ScrollToTopButton />
 
-      <ScrollToTopButton />
+        <Analytics />
       </body>
     </html>
   );

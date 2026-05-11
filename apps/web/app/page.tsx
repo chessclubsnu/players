@@ -12,7 +12,7 @@ export default function Page() {
         서울대&nbsp;&nbsp;중앙동아리&nbsp;&nbsp;체스클럽
       </p>
 
-      <div className="grid grid-cols-1 mt-4 py-4 gap-4 rounded-lg 
+      <div className="md:w-[70%] lg:w-[50%] mx-auto grid grid-cols-1 mt-4 py-4 gap-4 rounded-lg 
         justify-items-center items-center">
         <Link href="/hall-of-fame" className={styles.card}>
           <h2>Hall of Fame</h2>

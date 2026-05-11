@@ -1,6 +1,5 @@
 'use client';
 
-import styles from './renderbar.module.css';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
 type ProgressRow = {
@@ -107,8 +106,17 @@ function fillMissingPeriods(data: any[]) {
 function generateTicks(data: any[]) {
   const min = Math.min(...data.map((d) => d.rating));
   const max = Math.max(...data.map((d) => d.rating));
-  const start = Math.floor(min / 50) * 50;
-  const end = Math.ceil(max / 50) * 50;
+
+  let start, end;
+
+  if (min === max && min % 50 === 0) {
+    start = min - 25;
+    end = max + 25;
+  } else {
+    start = Math.floor(min / 50) * 50;
+    end = Math.ceil(max / 50) * 50;
+  }
+
   const ticks = [];
   for (let v = start; v <= end; v += 50) ticks.push(v);
   return ticks;

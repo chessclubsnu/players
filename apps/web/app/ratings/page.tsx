@@ -24,7 +24,7 @@ export default async function Page() {
       <h1 className="flex flex-col leading-tight text-white font-notoSerif font-normal text-3xl mb-12">
         Leaderboard
         <span className="text-lg font-light text-[#aaa] font-notoSerif -mt-lg">
-          1st Half, May 2026
+          2nd Half, May 2026
         </span>
         {/* 읽어온 데이터를 Props로 전달 */}
         <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 

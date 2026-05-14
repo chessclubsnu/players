@@ -2,37 +2,37 @@
     {
         "rank":1,
         "chessclub_id":"P0013",
-        "rating_end":1180.0
+        "rating_end":1170.2476948622
     },
     {
         "rank":2,
-        "chessclub_id":"P0014",
-        "rating_end":1080.0486383524
+        "chessclub_id":"P0009",
+        "rating_end":1122.4380136201
     },
     {
         "rank":3,
         "chessclub_id":"P0002",
-        "rating_end":1076.4046076841
+        "rating_end":1107.4428749806
     },
     {
         "rank":4,
-        "chessclub_id":"P0003",
-        "rating_end":1069.2557306487
+        "chessclub_id":"P0024",
+        "rating_end":1082.9306758735
     },
     {
         "rank":5,
-        "chessclub_id":"P0009",
-        "rating_end":1065.1469563061
+        "chessclub_id":"P0014",
+        "rating_end":1080.0486383524
     },
     {
         "rank":6,
         "chessclub_id":"P0017",
-        "rating_end":1062.8053079552
+        "rating_end":1072.5576130931
     },
     {
         "rank":7,
-        "chessclub_id":"P0024",
-        "rating_end":1060.0
+        "chessclub_id":"P0003",
+        "rating_end":1070.6743743078
     },
     {
         "rank":8,
@@ -41,13 +41,13 @@
     },
     {
         "rank":9,
-        "chessclub_id":"P0011",
-        "rating_end":1057.4114581483
+        "chessclub_id":"P0036",
+        "rating_end":1057.4160104787
     },
     {
         "rank":10,
-        "chessclub_id":"P0004",
-        "rating_end":1056.3395478764
+        "chessclub_id":"P0011",
+        "rating_end":1057.3955115456
     },
     {
         "rank":11,
@@ -66,102 +66,132 @@
     },
     {
         "rank":14,
-        "chessclub_id":"P0027",
-        "rating_end":1030.0
+        "chessclub_id":"P0039",
+        "rating_end":1027.4160104787
     },
     {
         "rank":15,
+        "chessclub_id":"P0004",
+        "rating_end":1015.9253410737
+    },
+    {
+        "rank":16,
+        "chessclub_id":"P0027",
+        "rating_end":1001.8915423143
+    },
+    {
+        "rank":17,
         "chessclub_id":"P0021",
         "rating_end":1000.0
     },
     {
-        "rank":16,
+        "rank":18,
         "chessclub_id":"P0016",
         "rating_end":997.4160104787
     },
     {
-        "rank":17,
-        "chessclub_id":"P0020",
-        "rating_end":980.1726800815
-    },
-    {
-        "rank":18,
-        "chessclub_id":"P0026",
-        "rating_end":976.5608751393
-    },
-    {
         "rank":19,
+        "chessclub_id":"P0020",
+        "rating_end":987.4496569561
+    },
+    {
+        "rank":20,
+        "chessclub_id":"P0037",
+        "rating_end":979.0745534796
+    },
+    {
+        "rank":21,
+        "chessclub_id":"P0034",
+        "rating_end":977.9047213511
+    },
+    {
+        "rank":22,
         "chessclub_id":"P0032",
         "rating_end":975.517547182
     },
     {
-        "rank":20,
+        "rank":23,
+        "chessclub_id":"P0038",
+        "rating_end":972.5839895213
+    },
+    {
+        "rank":24,
         "chessclub_id":"P0018",
         "rating_end":972.8053079552
     },
     {
-        "rank":21,
+        "rank":25,
         "chessclub_id":"P0010",
         "rating_end":970.0
     },
     {
-        "rank":22,
+        "rank":26,
         "chessclub_id":"P0007",
         "rating_end":970.0
     },
     {
-        "rank":23,
-        "chessclub_id":"P0023",
+        "rank":27,
+        "chessclub_id":"P0035",
         "rating_end":970.0
     },
     {
-        "rank":24,
+        "rank":28,
         "chessclub_id":"P0012",
         "rating_end":970.0380583224
     },
     {
-        "rank":25,
+        "rank":29,
         "chessclub_id":"P0033",
         "rating_end":970.0
     },
     {
-        "rank":26,
+        "rank":30,
         "chessclub_id":"P0022",
         "rating_end":969.5537690461
     },
     {
-        "rank":27,
+        "rank":31,
+        "chessclub_id":"P0026",
+        "rating_end":953.6301992658
+    },
+    {
+        "rank":32,
+        "chessclub_id":"P0023",
+        "rating_end":942.5839895213
+    },
+    {
+        "rank":33,
         "chessclub_id":"P0029",
         "rating_end":940.0
     },
     {
-        "rank":28,
+        "rank":34,
         "chessclub_id":"P0025",
         "rating_end":940.0
     },
     {
-        "rank":29,
+        "rank":35,
         "chessclub_id":"P0031",
         "rating_end":939.4596791628
     },
     {
-        "rank":30,
+        "rank":36,
         "chessclub_id":"P0015",
         "rating_end":912.8053079552
     },
     {
-        "rank":31,
+        "rank":37,
         "chessclub_id":"P0019",
         "rating_end":910.0
     },
     {
-        "rank":32,
+        "rank":38,
         "chessclub_id":"P0006",
-        "rating_end":890.5142162239
+        "rating_end":895.0408722842
     },
     {
-        "rank":33,
+        "rank":39,
         "chessclub_id":"P0001",
-        "rating_end":857.7443014817
+        "rating_end":848.6096397735
     }
 ]

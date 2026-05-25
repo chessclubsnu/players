@@ -21,7 +21,7 @@ const winners: Player[] = [
     name: "서명교",
     title: "서울대 체스 오픈 우승자\nSNU CHESS OPEN Winner",
     date: "2026.03.28",
-    image: "/image/hall-of-fame/_hf_2.png"
+    image: "/image/hall-of-fame/hf_2.png"
   },
   {
     id: 3,

@@ -261,10 +261,10 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                     >
                         {/* 순위 */}
                         <div className="flex flex-row items-end gap-0">
-                            <div className="text-left font-notoSerif font-normal text-xl md:text-2xl ml-6">{player.rank}</div>
+                            <div className="text-left font-notoSerif font-normal text-xl md:text-2xl ml-6">{player.is_tied ? '\'' + String(player.rank) : player.rank}</div>
                             
                             <div 
-                                className={`text-left font-notoSerif font-light text-base md:text-xl ml-2 ${!showDiff ? styles.hidden : ""}`}
+                                className={`text-left font-notoSerif font-light text-sm md:text-xl ml-2 ${!showDiff ? styles.hidden : ""}`}
                                 style={{ color: (player.rank_diff>0) ? climbColor : fallColor }}
                                 >
                                 {nWsign(player.rank_diff, true)}

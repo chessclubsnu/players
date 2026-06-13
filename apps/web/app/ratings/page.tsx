@@ -25,7 +25,7 @@ export default async function Page() {
         Leaderboard
         <span className="text-lg font-light text-[#aaa] font-notoSerif -mt-lg">
           {/* 위의 currentPeriod와 동일한 period */}
-          1st Half, June 2026
+          2nd Half, June 2026
         </span>
         {/* 읽어온 데이터를 Props로 전달 */}
         <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 

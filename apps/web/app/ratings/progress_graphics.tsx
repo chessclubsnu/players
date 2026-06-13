@@ -356,6 +356,8 @@ export default function ProgressGraphics({ data }: Props) {
 
           {/* ── XAxis ticks ── */}
           {completeData.map((d, i) => {
+            if (i !== 0 && i !== completeData.length - 1) return null;
+
             const { year, monthLabel, halfLabel } = formatPeriod(d.period);
             return (
               <text

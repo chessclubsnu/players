@@ -63,8 +63,8 @@ type Props = {
 }
 // #endregion
 
-export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking, lastRanking, playersProgress }: Props) {
-  // #region Show/Hide Details
+export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingAll, currentRankingActive, lastRankingAll, lastRankingActive, playersProgress }: Props) {
+  // #region Show/Hide Player Details
   const [openId, setOpenId] = useState<string | null>(null)
   const refs = useRef<Record<string, HTMLDivElement | null>>({})
 
@@ -96,15 +96,28 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
 
     setOpenId(id)
   }
+
+  const ripple = useRipple("rgba(255,255,255,0.35)")
   // #endregion
 
-  // #region Show/Hide Changes
+
+  // #region Show/Hide Changes (Button)
   const [showDiff, setShowDiff] = useState(true);
 
-  const handleToggle = () => {
+  const handleToggleChanges = () => {
     setShowDiff((prev) => !prev)
   }
   // #endregion
+
+
+  // #region Show/Hide Inactive Players (Button)
+  const [hideInactive, setHideInactive] = useState(true);
+
+  const handleToggleInactive = () => {
+    setHideInactive((prev) => !prev)
+  }
+  // #endregion
+
 
   // #region Process Data
   function attach$Stats$Name2Ranking(
@@ -162,14 +175,15 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
     })
   }
 
-  const currentAttach_progress = attach$Stats$Name2Ranking(currentRanking, playersProgress)
+  const all_attachProgress = attach$Stats$Name2Ranking(currentRankingAll, playersProgress)
+  const active_attachProgress = attach$Stats$Name2Ranking(currentRankingActive, playersProgress)
 
-  function attachDiff(currentAttach_progress, lastRanking) {
+  function attachDiff(attachProgress, lastRanking) {
     const lastMap = new Map(
         lastRanking.map((p) => [p.chessclub_id, p])
     );
 
-    return currentAttach_progress.map((curr) => {
+    return attachProgress.map((curr) => {
         const last = lastMap.get(curr.chessclub_id);
 
         const rating_diff =
@@ -188,9 +202,25 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
     });
   }
 
-  const currentAttach_progress_diff = attachDiff(currentAttach_progress, lastRanking)
+  const all_attachProgress_diff = attachDiff(all_attachProgress, lastRankingAll)
+  const active_attachProgress_diff = attachDiff(active_attachProgress, lastRankingActive)
+  let playerbase;
+  if (hideInactive) {
+    playerbase = active_attachProgress_diff;
+  } else {
+    playerbase = all_attachProgress_diff
+  }
 
   // #endregion
+
+
+  // #region colors
+  const climbColor = "#307bd1"
+  const climbColor2 = "#33ac4d"
+  const fallColor = "#d84036"
+  const fallColor2 = "d82d2d"
+  // #endregion
+
 
   function nWsign(n: number, arrow: boolean) {
     const ans = 
@@ -205,23 +235,28 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
     return ans
   }
   
-  const climbColor = "#307bd1"
-  const climbColor2 = "#33ac4d"
-  const fallColor = "#d84036"
-  const fallColor2 = "d82d2d"
-
-  const ripple = useRipple("rgba(255,255,255,0.35)")
-
   return (
     <div className="w-[95%] md:w-[70%] lg:w-[50%] max-w-[700px] mx-auto mt-10 mb-16 flex flex-col select-none">
-        {/* Show Changes 버튼 */}
-        <div className="flex flex-row ml-4 mb-8">
-            <Toggle
-                isOn={showDiff}
-                onToggle={handleToggle}
-                label={showDiff ? "Show Changes" : "Show Changes"}
-                alpha={showDiff ? 0.8: 0.8}
-            />
+        <div>
+            {/* Show Changes 버튼 */}
+            <div className="flex flex-row ml-4 mb-5">
+                <Toggle
+                    isOn={showDiff}
+                    onToggle={handleToggleChanges}
+                    label={showDiff ? "Show Changes" : "Show Changes"}
+                    alpha={showDiff ? 0.8 : 0.8}
+                />
+            </div>
+
+            {/* Hide Inactive Players 버튼 */}
+            <div className="flex flex-row ml-4 mb-8">
+                <Toggle
+                    isOn={hideInactive}
+                    onToggle={handleToggleInactive}
+                    label={hideInactive ? "Hide Inactive players" : "Hide Inactive players"}
+                    alpha={hideInactive ? 0.8 : 0.8}
+                />
+            </div>
         </div>
 
         {/* 헤더 */}
@@ -240,7 +275,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
         <div className="bottom-0 translate-x-[5%] w-[90%] md:w-[98%] md:translate-x-[1%] h-[1.5px] mt-0.5 md:mt-1 mb-1 bg-white/90"></div>
 
         <div className="w-full flex flex-col gap-0">
-            {currentAttach_progress_diff.map((player, index) => (
+            {playerbase.map((player, index) => (
                 <div key={player.chessclub_id} className="flex flex-col gap-0">
 
                     {/* 기본 row */}
@@ -253,6 +288,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                             active:translate-y-0.5
                             font-noto font-medium 
                             ${openId === player.chessclub_id ? styles.active : ""}
+                            ${player.active ? "text-white" : "text-white/30"}
                         `}
                         onClick={(e) => {
                             ripple(e);
@@ -274,7 +310,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRanking,
                         {/* 이름 */}
                         <div className="grid grid-cols-[50%_1fr] bg-transparent">
                             <div className="flex h-full items-center justify-end px-1 text-center font-notoSerif font-normal text-lg md:text-2xl bg-transparent">{player.name}</div>
-                            <div className="flex h-full items-end justify-start leading-none px-1 text-white/30 font-inter font-normal text-xs md:text-base bg-transparent">{player.student_id}</div>
+                            <div className="flex h-full items-end justify-start leading-none px-1 md:pb-0.5 text-white/30 font-inter font-normal text-xs md:text-base bg-transparent">{player.student_id}</div>
                         </div>
 
                         {/* 레이팅 */}

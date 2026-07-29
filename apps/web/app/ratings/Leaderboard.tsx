@@ -188,7 +188,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
 
         const rating_diff =
             last?.rating_end !== undefined
-                ? Math.round(curr.rating_end - last.rating_end)
+                ? Math.floor(curr.rating_end) - Math.floor(last.rating_end)
                 : undefined;
         const rank_diff = 
             last?.rank !== undefined

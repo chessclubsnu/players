@@ -16,6 +16,22 @@
         "chessclub_id":"P0040"
     },
     {
+        "student_id":"20XX-XX630",
+        "name":"김지훈",
+        "period":"202607B",
+        "rating_start":1032.5839895213,
+        "rating_end":1005.7089390872,
+        "delta_total":-26.8750504341,
+        "tournaments":1,
+        "win_w":0,
+        "draw_w":0,
+        "loss_w":1,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":0,
+        "chessclub_id":"P0040"
+    },
+    {
         "student_id":"20XX-XX714",
         "name":"이원준",
         "period":"202603A",
@@ -368,6 +384,22 @@
         "chessclub_id":"P0002"
     },
     {
+        "student_id":"20XX-XX327",
+        "name":"한찬희",
+        "period":"202607B",
+        "rating_start":1068.3121773384,
+        "rating_end":1056.9936182328,
+        "delta_total":-11.3185591056,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":1,
+        "win_b":1,
+        "draw_b":0,
+        "loss_b":1,
+        "chessclub_id":"P0002"
+    },
+    {
         "student_id":"20XX-XX839",
         "name":"임하균",
         "period":"202605A",
@@ -432,6 +464,22 @@
         "chessclub_id":"P0034"
     },
     {
+        "student_id":"20XX-XX171",
+        "name":"김지민",
+        "period":"202607B",
+        "rating_start":1068.906364636,
+        "rating_end":1152.3465894907,
+        "delta_total":83.4402248548,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":2,
+        "draw_b":0,
+        "loss_b":0,
+        "chessclub_id":"P0034"
+    },
+    {
         "student_id":"20XX-XX407",
         "name":"김상휘",
         "period":"202605A",
@@ -477,6 +525,22 @@
         "win_b":0,
         "draw_b":0,
         "loss_b":1,
+        "chessclub_id":"P0038"
+    },
+    {
+        "student_id":"20XX-XX407",
+        "name":"김상휘",
+        "period":"202607B",
+        "rating_start":1002.1954472467,
+        "rating_end":960.1178924408,
+        "delta_total":-42.0775548059,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":1,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":2,
         "chessclub_id":"P0038"
     },
     {
@@ -800,6 +864,22 @@
         "chessclub_id":"P0004"
     },
     {
+        "student_id":"20XX-XX340",
+        "name":"박민준",
+        "period":"202607B",
+        "rating_start":1101.0039748543,
+        "rating_end":1095.8063424281,
+        "delta_total":-5.1976324262,
+        "tournaments":2,
+        "win_w":1,
+        "draw_w":1,
+        "loss_w":0,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":1,
+        "chessclub_id":"P0004"
+    },
+    {
         "student_id":"20XX-XX346",
         "name":"김지훈",
         "period":"202603A",
@@ -944,6 +1024,22 @@
         "chessclub_id":"P0009"
     },
     {
+        "student_id":"20XX-XX346",
+        "name":"김지훈",
+        "period":"202607B",
+        "rating_start":1160.392725325,
+        "rating_end":1166.0452281169,
+        "delta_total":5.6525027919,
+        "tournaments":2,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":2,
+        "draw_b":0,
+        "loss_b":1,
+        "chessclub_id":"P0009"
+    },
+    {
         "student_id":"20XX-XX357",
         "name":"이지원",
         "period":"202603B",
@@ -1002,6 +1098,22 @@
         "win_w":0,
         "draw_w":0,
         "loss_w":1,
+        "win_b":0,
+        "draw_b":1,
+        "loss_b":0,
+        "chessclub_id":"P0005"
+    },
+    {
+        "student_id":"20XX-XX097",
+        "name":"유승곤",
+        "period":"202607B",
+        "rating_start":967.8622414326,
+        "rating_end":978.8270695298,
+        "delta_total":10.9648280972,
+        "tournaments":1,
+        "win_w":0,
+        "draw_w":0,
+        "loss_w":0,
         "win_b":0,
         "draw_b":1,
         "loss_b":0,
@@ -1120,6 +1232,22 @@
         "chessclub_id":"P0006"
     },
     {
+        "student_id":"20XX-XX476",
+        "name":"이현우",
+        "period":"202607B",
+        "rating_start":865.5089240027,
+        "rating_end":888.1160189131,
+        "delta_total":22.6070949104,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":1,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":0,
+        "chessclub_id":"P0006"
+    },
+    {
         "student_id":"20XX-XX752",
         "name":"박주언",
         "period":"202605B",
@@ -1229,6 +1357,22 @@
         "win_b":1,
         "draw_b":0,
         "loss_b":0,
+        "chessclub_id":"P0039"
+    },
+    {
+        "student_id":"20XX-XX162",
+        "name":"전종인",
+        "period":"202607B",
+        "rating_start":1093.910983847,
+        "rating_end":1100.194800718,
+        "delta_total":6.2838168711,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":1,
         "chessclub_id":"P0039"
     },
     {
@@ -1373,6 +1517,22 @@
         "win_b":1,
         "draw_b":0,
         "loss_b":2,
+        "chessclub_id":"P0029"
+    },
+    {
+        "student_id":"20XX-XX243",
+        "name":"양지원",
+        "period":"202607B",
+        "rating_start":1022.1804014891,
+        "rating_end":1070.541596047,
+        "delta_total":48.3611945578,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":1,
+        "draw_b":0,
+        "loss_b":0,
         "chessclub_id":"P0029"
     },
     {
@@ -1584,6 +1744,22 @@
         "chessclub_id":"P0044"
     },
     {
+        "student_id":"20XX-XX160",
+        "name":"손태준",
+        "period":"202607B",
+        "rating_start":1029.5537690461,
+        "rating_end":959.7390251204,
+        "delta_total":-69.8147439257,
+        "tournaments":1,
+        "win_w":0,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":2,
+        "chessclub_id":"P0044"
+    },
+    {
         "student_id":"20XX-XX762",
         "name":"신은혁",
         "period":"202603B",
@@ -1643,6 +1819,22 @@
         "draw_w":0,
         "loss_w":1,
         "win_b":1,
+        "draw_b":0,
+        "loss_b":0,
+        "chessclub_id":"P0045"
+    },
+    {
+        "student_id":"20XX-XX218",
+        "name":"이혜수",
+        "period":"202607B",
+        "rating_start":1000.921903756,
+        "rating_end":959.5468715691,
+        "delta_total":-41.3750321869,
+        "tournaments":1,
+        "win_w":0,
+        "draw_w":0,
+        "loss_w":2,
+        "win_b":0,
         "draw_b":0,
         "loss_b":0,
         "chessclub_id":"P0045"
@@ -1712,6 +1904,22 @@
         "chessclub_id":"P0036"
     },
     {
+        "student_id":"20XX-XX055",
+        "name":"이종린",
+        "period":"202607B",
+        "rating_start":1040.805177303,
+        "rating_end":1076.3782760268,
+        "delta_total":35.5730987238,
+        "tournaments":1,
+        "win_w":1,
+        "draw_w":0,
+        "loss_w":0,
+        "win_b":1,
+        "draw_b":0,
+        "loss_b":0,
+        "chessclub_id":"P0036"
+    },
+    {
         "student_id":"20XX-XX415",
         "name":"이준원",
         "period":"202604A",
@@ -1757,6 +1965,22 @@
         "win_b":1,
         "draw_b":0,
         "loss_b":2,
+        "chessclub_id":"P0027"
+    },
+    {
+        "student_id":"20XX-XX415",
+        "name":"이준원",
+        "period":"202607B",
+        "rating_start":953.9198751801,
+        "rating_end":905.5586806223,
+        "delta_total":-48.3611945578,
+        "tournaments":1,
+        "win_w":0,
+        "draw_w":0,
+        "loss_w":1,
+        "win_b":0,
+        "draw_b":0,
+        "loss_b":1,
         "chessclub_id":"P0027"
     },
     {

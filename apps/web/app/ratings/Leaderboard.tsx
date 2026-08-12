@@ -63,7 +63,7 @@ type Props = {
 }
 // #endregion
 
-export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingAll, currentRankingActive, lastRankingAll, lastRankingActive, playersProgress }: Props) {
+export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingAll, currentRankingActive, lastRankingAll, lastRankingActive, playersProgress, playersBio }: Props) {
   // #region Show/Hide Player Details
   const [openId, setOpenId] = useState<string | null>(null)
   const refs = useRef<Record<string, HTMLDivElement | null>>({})
@@ -204,11 +204,34 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
 
   const all_attachProgress_diff = attachDiff(all_attachProgress, lastRankingAll)
   const active_attachProgress_diff = attachDiff(active_attachProgress, lastRankingActive)
+
+  function attachBio(attachProgress_diff, playersBio) {
+    const bioMap = new Map(
+        playersBio.map((p) => [p.chessclub_id, p])
+    );
+    
+    return attachProgress_diff.map((p) => {
+        const bio = bioMap.get(p.chessclub_id);
+        const bio_text = 
+            bio?.bio_text !== undefined
+                ? bio.bio_text
+                : undefined
+
+        return {
+            ...p,
+            bio_text
+        };
+    });
+  }
+
+  const all_attachProgress_diff_bio = attachBio(all_attachProgress_diff, playersBio)
+  const active_attachProgress_diff_bio = attachBio(active_attachProgress_diff, playersBio)
+
   let playerbase;
   if (hideInactive) {
-    playerbase = active_attachProgress_diff;
+    playerbase = active_attachProgress_diff_bio;
   } else {
-    playerbase = all_attachProgress_diff
+    playerbase = all_attachProgress_diff_bio
   }
 
   // #endregion
@@ -344,6 +367,16 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
                         }`}
                     >
                         <div className={styles.detailContent}>
+                            {player.bio_text !== undefined ? (
+                                    <div className="text-xl md:text-2xl font-notoSerif text-center mb-6">
+                                        Bio
+                                        <div className="text-lg md:tex-xl italic font-notoSerif text-center mx-6 mt-1">
+                                            {player.bio_text}
+                                        </div>
+                                    </div>
+                                ) : (<></>)
+                            }
+
                             <WinRateBars white={{
                                 win: player.stats.total.win_w,
                                 draw: player.stats.total.draw_w,

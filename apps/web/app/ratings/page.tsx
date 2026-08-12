@@ -34,6 +34,8 @@ export default async function Page() {
 
   const playersProgress = await loadJsonFile("PUBLIC__players_progress_by_period")
   
+  const playersBio = await loadJsonFile("PUBLIC__bio")
+
   return (
     <main className={styles.main}>
       <h1 className="flex flex-col leading-tight text-white font-notoSerif font-normal text-3xl mb-12">
@@ -46,7 +48,7 @@ export default async function Page() {
         <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 
           currentRankingAll={currentRankingAll} currentRankingActive={currentRankingActive}
           lastRankingAll={lastRankingAll} lastRankingActive={lastRankingActive}
-          playersProgress={playersProgress} />
+          playersProgress={playersProgress} playersBio={playersBio}/>
       </h1>
     </main>
   );

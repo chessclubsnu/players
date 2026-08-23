@@ -29,7 +29,7 @@ export default function WinRateBars({ white, black }: Props) {
   }
 
   const winColor = "#2a68af"
-  const drawColor = "#8a8a8a"
+  const drawColor = "#7a7a7a"
   const lossColor = "#D04040"
 
   const renderBar = (label: string, record: Record) => {

@@ -21,9 +21,9 @@ export default function Navbar() {
   return (
     <>
       <nav className="border-b border-gray-300 px-4 py-1 md:py-3 relative z-50">
-        <div className="text-white grid grid-cols-[33%_33%_34%] items-center px-0">
+        <div className="text-white grid grid-cols-[20%_1fr_20%] items-center px-0">
           {/* 로고 */}
-          <div className="grid grid-cols-[55%_1fr]">
+          <div className="grid grid-cols-[90%_1fr]">
             <Link href="/" className="flex flex-row justify-start md:hover:brightness-50 transition-all duration-300 cursor-pointer
               active:brightness-50 p-0">
               <Image 
@@ -45,6 +45,7 @@ export default function Navbar() {
           <div className="invisible md:visible md:flex justify-center gap-8 font-normal font-notoSerif transition-all duration-300">
             <Link href="/hall-of-fame" className="inline-block md:hover:brightness-50">Hall of Fame</Link>
             <Link href="/ratings" className="inline-block md:hover:brightness-50">Ratings</Link>
+            <Link href="/head-to-head" className="inline-block md:hover:brightness-50">Head-to-Head</Link>
           </div>
 
           {/* 데스크탑 소셜 아이콘 */}
@@ -124,6 +125,9 @@ export default function Navbar() {
           </Link>
           <Link href="/ratings" onClick={() => setOpen(false)} className="text-white active:text-gray-500 font-notoSerif">
             Ratings
+          </Link>
+          <Link href="/head-to-head" onClick={() => setOpen(false)} className="text-white active:text-gray-500 font-notoSerif">
+            Head-to-Head
           </Link>
 
           <div className="flex gap-4 mt-4">

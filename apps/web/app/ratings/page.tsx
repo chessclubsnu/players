@@ -4,13 +4,12 @@ import path from 'path'
 import styles from "./page.module.css"
 
 export default async function Page() {
-  async function loadJsonFile(fileName: string) {
-    const filePath = path.join(process.cwd(), 'public', 'json', fileName + '.json');
+  async function loadJsonFile(filePath: string) {
     const fileContent = await fs.readFile(filePath, 'utf8');
     return JSON.parse(fileContent)
   }
   
-  const periodFile = await loadJsonFile("period")
+  const periodFile = await loadJsonFile(path.join(process.cwd(), "public", "processed", "period.json"))
   const currentPeriod: string = periodFile[0].current_period
   const lastPeriod: string = periodFile[0].last_period
 
@@ -27,14 +26,14 @@ export default async function Page() {
     return `${half}, ${month} ${year}`;
   }
 
-  const currentRankingAll = await loadJsonFile("PUBLIC__ranking_" + currentPeriod + "_all");
-  const currentRankingActive = await loadJsonFile("PUBLIC__ranking_" + currentPeriod + "_active");
-  const lastRankingAll = await loadJsonFile("PUBLIC__ranking_" + lastPeriod + "_all")
-  const lastRankingActive = await loadJsonFile("PUBLIC__ranking_" + lastPeriod + "_active")
+  const currentRankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_all.json"));
+  const currentRankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_active.json"));
+  const lastRankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_all.json"))
+  const lastRankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_active.json"))
 
-  const playersProgress = await loadJsonFile("PUBLIC__players_progress_by_period")
+  const playersProgress = await loadJsonFile(path.join(process.cwd(), "public", "processed", "PUBLIC__players_progress_by_period.json"))
   
-  const playersBio = await loadJsonFile("PUBLIC__bio")
+  const playersBio = await loadJsonFile(path.join(process.cwd(), "public", "processed", "PUBLIC__bio.json"))
 
   return (
     <main className={styles.main}>

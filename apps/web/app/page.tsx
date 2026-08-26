@@ -23,6 +23,11 @@ export default function Page() {
           <h2>Ratings</h2>
           <p>레이팅</p>
         </Link>
+
+        <Link href="/head-to-head" className={styles.card}>
+          <h2>Head-to-Head</h2>
+          <p>상대 전적</p>
+        </Link>
       </div>
     </main>
   )

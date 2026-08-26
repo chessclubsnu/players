@@ -36,3 +36,7 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# 데이터 파일
+apps/web/public/json/
+apps/web/public/processed/

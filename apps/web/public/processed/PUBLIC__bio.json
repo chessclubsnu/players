@@ -4,5 +4,17 @@
         "student_id":"20XX-XX386",
         "bio_text":"Giri, Anish의 수제자",
         "chessclub_id":"P0037"
+    },
+    {
+        "name":"김지훈",
+        "student_id":"20XX-XX346",
+        "bio_text":"체스클럽 회장",
+        "chessclub_id":"P0006"
+    },
+    {
+        "name":"조경훈",
+        "student_id":"20XX-XX874",
+        "bio_text":"체스클럽 전 회장",
+        "chessclub_id":"P0002"
     }
 ]

@@ -16,5 +16,17 @@
         "student_id":"20XX-XX874",
         "bio_text":"체스클럽 전 회장",
         "chessclub_id":"P0002"
+    },
+    {
+        "name":"김지민",
+        "student_id":"20XX-XX171",
+        "bio_text":"63. Kf2#",
+        "chessclub_id":"P0035"
+    },
+    {
+        "name":"최윤수",
+        "student_id":"20XX-XX258",
+        "bio_text":"느낌표 수집가입니다.",
+        "chessclub_id":"P0067"
     }
 ]

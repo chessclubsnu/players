@@ -12,24 +12,38 @@ const winners: Player[] = [
   {
     id: 1,
     name: "김성범",
-    title: "제1회 아레나 나잇 우승자\nArena Night Winner",
-    date: "2026.3.13",
+    title: "제1회 체스닷컴\n아레나 나잇 우승자\n\nThe 1st Chess.com\nArena Night Winner",
+    date: "2026.03.13",
     image: "/image/hall-of-fame/hf_1.png",
   },
   {
     id: 2,
     name: "서명교",
-    title: "서울대 체스 오픈 우승자\nSNU CHESS OPEN Winner",
+    title: "제1회 래피드 토너먼트\n오픈 부문 우승자\n\nThe 1st Rapid Tournament\nOpen Section Winner",
     date: "2026.03.28",
-    image: "/image/hall-of-fame/hf_2.png"
+    image: "/image/hall-of-fame/hf_2.png",
   },
   {
     id: 3,
     name: "한찬희",
-    title: "서울대 체스 U1500 우승자\nSNU CHESS U1500 Winner",
+    title: "제1회 래피드 토너먼트\nU1500 부문 우승자\n\nThe 1st Rapid Tournament\nU1500 Section Winner",
     date: "2026.03.28",
     image: "/image/hall-of-fame/hf_3.png",
   },
+  {
+    id: 4,
+    name: "서명교",
+    title: "제2회 래피드 토너먼트\n오픈 부문 우승자\n\nThe 2nd Rapid Tournament\nOpen Section Winner",
+    date: "2026.09.19",
+    image: "/image/hall-of-fame/hf_2.png",
+  },
+  {
+    id: 5,
+    name: "정윤석",
+    title: "제2회 래피드 토너먼트\nU1500 부문 우승자\n\nThe 2nd Rapid Tournament\nU1500 Section Winner",
+    date: "2026.09.19",
+    image: "/image/hall-of-fame/_.png",
+  }
 ]
 
 export default function Page() {

@@ -8,33 +8,42 @@ import ProgressGraphics from './progress_graphics';
 import useRipple from './ripple';
 
 // #region Types
-// type player = {
-//     name: string
-//     student_id: string
-//     rating: number
-//     peak_rating: number
-//     lowest_rating: number
-//     first_game_played_on: number
-//     last_game_played_on: number
-//     games_played: number
-//     wins: number
-//     draws: number
-//     losses: number
-//     games_played_with_white: number
-//     wins_with_white: number
-//     draws_with_white: number
-//     losses_with_white: number
-//     games_played_with_black: number
-//     wins_with_black: number
-//     draws_with_black: number
-//     losses_with_black: number
-//     chessclub_id: string
-// }
+type player = {
+    name: string
+    student_id: string
+    rating: number
+    peak_rating: number
+    lowest_rating: number
+    first_game_played_on: number
+    last_game_played_on: number
+    games_played: number
+    wins: number
+    draws: number
+    losses: number
+    games_played_with_white: number
+    wins_with_white: number
+    draws_with_white: number
+    losses_with_white: number
+    games_played_with_black: number
+    wins_with_black: number
+    draws_with_black: number
+    losses_with_black: number
+    chessclub_id: string
+}
 
 type RankingType = {
-    rank: number,
     chessclub_id: string,
-    rating_end: number
+    name: string,
+    sort_index: number,
+    rank: number,
+    rank_str: string,
+    is_tied: boolean,
+    rating_floor: number,
+    active: boolean,
+    rank_diff: number,
+    rating_diff: number,
+    is_new: boolean,
+    is_returned: boolean,
 }
 
 type PlayerProgressType = {
@@ -54,16 +63,23 @@ type PlayerProgressType = {
     chessclub_id: string
 }
 
+type PlayerBioType = {
+    name: string
+    student_id: string
+    bio_text: string
+    chessclub_id: string
+}
+
 type Props = {
     currentPeriod: string
-    lastPeriod: string
-    currentRanking: RankingType[]
-    lastRanking: RankingType[]
+    RankingAll: RankingType[]
+    RankingActive: RankingType[]
     playersProgress: PlayerProgressType[]
+    playersBio: PlayerBioType[]
 }
 // #endregion
 
-export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingAll, currentRankingActive, lastRankingAll, lastRankingActive, playersProgress, playersBio }: Props) {
+export default function Leaderboard({ currentPeriod, RankingAll, RankingActive, playersProgress, playersBio }: Props) {
   // #region Show/Hide Player Details
   const [openId, setOpenId] = useState<string | null>(null)
   const refs = useRef<Record<string, HTMLDivElement | null>>({})
@@ -120,10 +136,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
 
 
   // #region Process Data
-  function attach$Stats$Name2Ranking(
-    ranking: RankingType[],
-    playersProgress: PlayerProgressType[]
-  ) {
+  function attachStatsToRanking(ranking: RankingType[], playersProgress: PlayerProgressType[]) {
     return ranking.map((player) => {
       const stats = playersProgress
         .filter((p) => p.chessclub_id === player.chessclub_id)
@@ -163,54 +176,25 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
             p.chessclub_id === player.chessclub_id
       );
 
-      const name = target?.name
       const student_id = target?.student_id
 
       return {
         ...player,
-        name,
         student_id,
         stats
       }
     })
   }
 
-  const all_attachProgress = attach$Stats$Name2Ranking(currentRankingAll, playersProgress)
-  const active_attachProgress = attach$Stats$Name2Ranking(currentRankingActive, playersProgress)
+  const all_attachProgress = attachStatsToRanking(RankingAll, playersProgress)
+  const active_attachProgress = attachStatsToRanking(RankingActive, playersProgress)
 
-  function attachDiff(attachProgress, lastRanking) {
-    const lastMap = new Map(
-        lastRanking.map((p) => [p.chessclub_id, p])
-    );
-
-    return attachProgress.map((curr) => {
-        const last = lastMap.get(curr.chessclub_id);
-
-        const rating_diff =
-            last?.rating_end !== undefined
-                ? Math.floor(curr.rating_end) - Math.floor(last.rating_end)
-                : undefined;
-        const rank_diff = 
-            last?.rank !== undefined
-                ? last.rank - curr.rank
-                : undefined
-        return {
-            ...curr,
-            rating_diff,
-            rank_diff
-        };
-    });
-  }
-
-  const all_attachProgress_diff = attachDiff(all_attachProgress, lastRankingAll)
-  const active_attachProgress_diff = attachDiff(active_attachProgress, lastRankingActive)
-
-  function attachBio(attachProgress_diff, playersBio) {
+  function attachBio(attachProgress, playersBio: PlayerBioType[]) {
     const bioMap = new Map(
         playersBio.map((p) => [p.chessclub_id, p])
     );
     
-    return attachProgress_diff.map((p) => {
+    return attachProgress.map((p) => {
         const bio = bioMap.get(p.chessclub_id);
         const bio_text = 
             bio?.bio_text !== undefined
@@ -224,16 +208,16 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
     });
   }
 
-  const all_attachProgress_diff_bio = attachBio(all_attachProgress_diff, playersBio)
-  const active_attachProgress_diff_bio = attachBio(active_attachProgress_diff, playersBio)
+  const all_attachProgress_bio = attachBio(all_attachProgress, playersBio)
+  const active_attachProgress_bio = attachBio(active_attachProgress, playersBio)
+
 
   let playerbase;
   if (hideInactive) {
-    playerbase = active_attachProgress_diff_bio;
+    playerbase = active_attachProgress_bio;
   } else {
-    playerbase = all_attachProgress_diff_bio
+    playerbase = all_attachProgress_bio
   }
-
   // #endregion
 
 
@@ -242,6 +226,9 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
   const climbColor2 = "#33ac4d"
   const fallColor = "#d84036"
   const fallColor2 = "d82d2d"
+
+  const newPlayerColor = "#cfc72a"
+  const returnedPlayerColor = "#cfc72a"
   // #endregion
 
 
@@ -311,7 +298,7 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
                             active:translate-y-0.5
                             font-noto font-medium 
                             ${openId === player.chessclub_id ? styles.active : ""}
-                            ${player.active ? "text-white" : "text-white/30"}
+                            ${player.active ? "brightness-100" : "brightness-30"}
                         `}
                         onClick={(e) => {
                             ripple(e);
@@ -323,10 +310,39 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
                             <div className="text-left font-notoSerif font-normal text-xl md:text-2xl ml-6">{player.is_tied ? '\'' + String(player.rank) : player.rank}</div>
                             
                             <div 
-                                className={`text-left font-notoSerif font-light text-sm md:text-xl ml-2 ${!showDiff ? styles.hidden : ""}`}
-                                style={{ color: (player.rank_diff>0) ? climbColor : fallColor }}
+                                className={
+                                    `${(!player.active | player.is_new | player.is_returned) ? styles.textFlag : styles.numFlag}
+                                    text-left font-notoSerif font-light ml-2 
+                                    ${!showDiff ? styles.hidden : ""}`}
+                                style={{ 
+                                    color:
+                                        !player.active ?
+                                            'white'
+                                        :
+                                            player.is_new ?
+                                                newPlayerColor
+                                            : 
+                                                player.is_returned ?
+                                                    returnedPlayerColor
+                                                :
+                                                    player.rank_diff > 0 ?
+                                                        climbColor
+                                                    :  
+                                                        fallColor,
+                                }}
                                 >
-                                {nWsign(player.rank_diff, true)}
+                                {
+                                    !player.active?
+                                        '---'
+                                    :
+                                        player.is_new ? 
+                                            "new"
+                                        :
+                                            player.is_returned ?
+                                                "re."
+                                            :
+                                                nWsign(player.rank_diff, true)
+                                }
                             </div>
                         </div>
                         
@@ -344,14 +360,37 @@ export default function Leaderboard({ currentPeriod, lastPeriod, currentRankingA
 
                             <div className="grid grid-cols-[70%_30%] items-end justify-left gap-0 pl bg-transparent">
                                 <div className="text-right font-notoSerif font-normal text-lg md:text-2xl mr-0 bg-transparent">
-                                    {Math.floor(player.rating_end)}
+                                    {Math.floor(player.rating_floor)}
                                 </div>
 
                                 <div 
                                     className={`bg-transparent text-left font-notoSerif text-sm md:text-xl font-normal ml-1 md:ml-2 ${!showDiff ? styles.hidden : ""}`}
-                                    style={{ color: (player.rating_diff>0) ? climbColor : fallColor }}
+                                    style={{ 
+                                        color: 
+                                            !player.active ?
+                                                "white"
+                                            :
+                                                player.is_new ?
+                                                    newPlayerColor
+                                                : 
+                                                    player.is_returned ?
+                                                        returnedPlayerColor
+                                                    :
+                                                        player.rating_diff > 0 ?
+                                                            climbColor
+                                                        :  
+                                                            fallColor
+                                    }}
                                     >
-                                    {nWsign(player.rating_diff, false)}
+                                    {
+                                        player.is_new ? 
+                                            ""
+                                        :
+                                            player.is_returned ?
+                                                ""
+                                            :
+                                                nWsign(Math.round(player.rating_diff), false)
+                                    }
                                 </div>
                             </div>
                         </div>

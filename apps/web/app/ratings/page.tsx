@@ -26,10 +26,10 @@ export default async function Page() {
     return `${half}, ${month} ${year}`;
   }
 
-  const currentRankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_all.json"));
-  const currentRankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_active.json"));
-  const lastRankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_all.json"))
-  const lastRankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_active.json"))
+  const RankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_all.json"));
+  const RankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + currentPeriod + "_active.json"));
+  // const lastRankingAll = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_all.json"))
+  // const lastRankingActive = await loadJsonFile(path.join(process.cwd(), "public", "processed", "rankings", "PUBLIC__ranking_" + lastPeriod + "_active.json"))
 
   const playersProgress = await loadJsonFile(path.join(process.cwd(), "public", "processed", "PUBLIC__players_progress_by_period.json"))
   
@@ -44,9 +44,8 @@ export default async function Page() {
           {formatPeriod(currentPeriod)}
         </span>
         {/* 읽어온 데이터를 Props로 전달 */}
-        <Leaderboard currentPeriod = {currentPeriod} lastPeriod = {lastPeriod} 
-          currentRankingAll={currentRankingAll} currentRankingActive={currentRankingActive}
-          lastRankingAll={lastRankingAll} lastRankingActive={lastRankingActive}
+        <Leaderboard currentPeriod = {currentPeriod}
+          RankingAll={RankingAll} RankingActive={RankingActive}
           playersProgress={playersProgress} playersBio={playersBio}/>
       </h1>
     </main>

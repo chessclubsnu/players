@@ -48,3 +48,23 @@
 .hidden {
   visibility: hidden;
 }
+
+.textFlag {
+  font-family: var(--font-futura);
+  font-size: 1.4rem;
+}
+
+.numFlag {
+  font-family: var(--font-notoSerif);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+  .textFlag {
+    font-size: 1rem;
+  }
+
+  .numFlag {
+    font-size: 1rem;
+  }
+}

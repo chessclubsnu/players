@@ -218,6 +218,8 @@ export default function Leaderboard({ currentPeriod, RankingAll, RankingActive, 
   } else {
     playerbase = all_attachProgress_bio
   }
+
+  const inactive_count = RankingAll.length - RankingActive.length
   // #endregion
 
 
@@ -263,7 +265,7 @@ export default function Leaderboard({ currentPeriod, RankingAll, RankingActive, 
                 <Toggle
                     isOn={hideInactive}
                     onToggle={handleToggleInactive}
-                    label={hideInactive ? "Hide Inactive players" : "Hide Inactive players"}
+                    label={hideInactive ? "Hide Inactive players (" + String(inactive_count) + ")" : "Hide Inactive players (" + String(inactive_count) + ")"}
                     alpha={hideInactive ? 0.8 : 0.8}
                 />
             </div>
@@ -339,7 +341,7 @@ export default function Leaderboard({ currentPeriod, RankingAll, RankingActive, 
                                             "new"
                                         :
                                             player.is_returned ?
-                                                "re."
+                                                "↺"
                                             :
                                                 nWsign(player.rank_diff, true)
                                 }

@@ -42,7 +42,7 @@ const winners: Player[] = [
     name: "정윤석",
     title: "제2회 래피드 토너먼트\nU1500 부문 우승자\n\nThe 2nd Rapid Tournament\nU1500 Section Winner",
     date: "2026.09.19",
-    image: "/image/hall-of-fame/_.png",
+    image: "/image/hall-of-fame/hf_5.png",
   }
 ]
 

@@ -341,7 +341,7 @@ export default function Leaderboard({ currentPeriod, RankingAll, RankingActive, 
                                             "new"
                                         :
                                             player.is_returned ?
-                                                "↺"
+                                                "re."
                                             :
                                                 nWsign(player.rank_diff, true)
                                 }

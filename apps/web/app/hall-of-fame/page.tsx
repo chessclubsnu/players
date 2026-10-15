@@ -35,7 +35,7 @@ const winners: Player[] = [
     name: "서명교",
     title: "제2회 래피드 토너먼트\n오픈 부문 우승자\n\nThe 2nd Rapid Tournament\nOpen Section Winner",
     date: "2026.09.19",
-    image: "/image/hall-of-fame/hf_2.png",
+    image: "/image/hall-of-fame/hf_4.png",
   },
   {
     id: 5,
